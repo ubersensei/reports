@@ -1,0 +1,81 @@
+#header {
+  position: relative;
+  height: 1.75em;
+  background-color: $darkBlack;
+  color: white;
+  .header-text {
+    font-size: 0.6875em;
+    line-height: 2.545454;
+    letter-spacing: 0.02em;
+  }
+
+  .login {
+    position: absolute;
+    top: 0;
+    left: 32.7em;
+    background-color: $red;
+    height: 2.8em;
+    padding: 0 2em;
+    &:hover {
+      cursor: pointer;
+      background-color: $darkRed;
+      transition: background .15s ease-in;
+    }
+  }
+}
+#nav {
+  position: relative;
+  height: 5.1875em;
+  padding-top: 1em;
+  img, .wrapper {
+    float: left;
+    margin-right: 4em;
+  }
+  .wrapper {
+    padding-top: 0.5em;
+    font-size: 0.875em;
+    font-weight: 700;
+    &:hover {
+      cursor: pointer;
+      color: $blackTint2;
+      transition: color .15s ease-in;
+
+    }
+  }
+}
+#content {
+  padding-top: 1.5em;
+  .filter-wrapper {
+    padding-top: 3em;
+  }
+}
+#header, #nav, #content {
+  padding-left: 7em;
+}
+
+.title {
+  font-weight: 700;
+  font-size: 2.5em;
+}
+
+table {
+  margin-top: 1em;
+  border-collapse: collapse;
+}
+
+td, th {
+  position: relative;
+  border: 1px solid $blackTint4;
+  max-width: 5em;
+  text-align: left;
+  .cell {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    padding:0.3em 0.5em;
+  }
+}
+
+th {
+  font-weight: 700;
+}
