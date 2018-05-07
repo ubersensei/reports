@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Data Generation</title>
+</head>
+<body>
+
+
+<div id="output"></div>
+<div id="hbOutput"></div>
+<script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+<script type="text/javascript" src="../vendor/handlebars-v4.0.11.js"></script>
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+<script type="text/javascript" src="raw.js"></script>
+<script type="text/javascript" src="utils.js"></script>
+<script type="text/babel" src="manipulate.js"></script>
+<script id="entry-template" type="text/x-handlebars-template">
+    <div class="entry">
+        <h1>{{title}}</h1>
+        <div class="body">
+            {{body}}
+        </div>
+    </div>
+</script>
+<script type="text/javascript">
+    const source   = document.getElementById("entry-template").innerHTML;
+    const template = Handlebars.compile(source);
+    const context = {title: "My New Post", body: "This is my first post!"};
+    const html    = template(context);
+    document.getElementById("hbOutput").innerHTML = html;
+    // $( document ).ready(function() {
+    //     $('#hbOutput').html() = html;
+    // });
+
+</script>
+</body>
+</html>
