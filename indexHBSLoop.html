@@ -50,24 +50,18 @@
 <script type="text/javascript" src="vendor/handlebars-v4.0.11.js"></script>
 
 <script id="entry-template" type="text/x-handlebars-template">
-    {{#* inline "iterationCount"}}
-        <div>I'm iteration #{{number}}</div>
-    {{/inline}}
-
-    {{#each iterationArray}}
-        {{> iterationCount}}
-    {{/each}}
+    <div class="entry">
+        <h1>{{title}}</h1>
+        <div class="body">
+            {{body}}
+        </div>
+    </div>
 </script>
 
 
 <script id="dashboard-header-row-hbs" type="text/x-handlebars-template">
-    {{#each header}}
+    {{#each headers}}
         <th><div class="cell">{{title}}</div></th>
-    {{/each}}
-</script>
-<script id="dashboard-body-row-hbs" type="text/x-handlebars-template">
-    {{#each content}}
-        <td><div class="cell">{{value}}</div></td>
     {{/each}}
 </script>
 
