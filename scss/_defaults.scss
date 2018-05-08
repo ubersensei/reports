@@ -1,7 +1,7 @@
 html,
 body {
   height: 100%; //set height to viewport
-  overflow: hidden;
+  overflow: auto;
 }
 
 html {
@@ -35,6 +35,7 @@ html {
 body {
   font-size: 100%;
   @extend %font_pre;
+  padding-bottom: 15em;
 }
 
 a:link,
@@ -47,4 +48,30 @@ a:hover {
 
 p {
   text-align: left;
+}
+
+
+input,
+textarea {
+  display: block;
+  line-height: 100%;
+  width: 100%;
+  outline: none;
+  overflow: hidden;
+  margin: 0;
+  padding: 0;
+}
+
+input {
+  -webkit-appearance: none;
+  border-radius: 0;
+  font-size: 1.142857em;
+  line-height: 1;
+  padding: 0.4em  2em 0.4em  0.2em;
+  border: none;
+  border-bottom: 1px solid $blackTint4;
+  &:focus {
+    border-bottom: 1px solid $darkRed;
+    transition: border-bottom-color .15s ease-in;
+  }
 }
