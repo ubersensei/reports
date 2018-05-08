@@ -1,5 +1,5 @@
 $( document ).ready(function() {
-    $('#hbOutput').html(htmlEntry);
+    // $('#hbOutput').html(htmlEntry);
 
-    $('#dashboard-header-row').html(htmldashboardHeaderRow);
+    $('#dashboard-table').html(htmldashboardTable);
 });

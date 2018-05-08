@@ -1,18 +1,13 @@
-const contextInline = {
-  iterationArray: [
-      {number: 1},
-      {number: 2},
-      {number: 3},
-      {number: 4},
-      {number: 5},
-      {number: 6}
-  ]
+const contextTable = {
+  headerTitles: [
+    { title: "Names" },
+    { title: "Age" },
+    { title: "Occupation" },
+    { title: "People" }
+  ],
+    contentRows: {
+      1: [{ value: "SJ" }, { value: 12 }, { value: "Job" }, { value: "Many" }],
+      2: [{ value: "TJ" }, { value: 14 }, { value: "Job" }, { value: "Many" }],
+    },
 };
 
-const contextHeader = {
-  header: [{ title: "Names" }, { title: "Age" }, { title: "Occupation" }, { title: "People" }]
-};
-
-const contextRow = {
-  content: [{ value: "SJ" }, { value: 12 }, { value: "Job" }, { value: "Many" }]
-};

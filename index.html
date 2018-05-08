@@ -24,51 +24,43 @@
 <div id="content">
     <div class="title">Dashboard</div>
     <div class="filter-wrapper">From Date To Date</div>
-    <table>
-        <thead><tr id="dashboard-header-row"></tr></thead>
-        <tbody>
-        <tr>
-            <th><div class="cell">Jim</div></th>
-            <td><div class="cell">00001</div></td>
-            <td><div class="cell">Blue</div></td>
-        </tr>
-        <tr>
-            <th><div class="cell">Jack</div></th>
-            <td><div class="cell">00002</div></td>
-            <td><div class="cell">Red</div></td>
-        </tr>
-        <tr>
-            <th><div class="cell">Jill</div></th>
-            <td><div class="cell">00003</div></td>
-            <td><div class="cell">Pink</div></td>
-        </tr>
-        </tbody>
-    </table>
+    <div id="dashboard-table"></div>
 </div>
 <div id="hbOutput"></div>
 <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
 <script type="text/javascript" src="vendor/handlebars-v4.0.11.js"></script>
-
-<script id="entry-template" type="text/x-handlebars-template">
-    {{#* inline "iterationCount"}}
-        <div>I'm iteration #{{number}}</div>
-    {{/inline}}
-
-    {{#each iterationArray}}
-        {{> iterationCount}}
-    {{/each}}
-</script>
-
-
-<script id="dashboard-header-row-hbs" type="text/x-handlebars-template">
-    {{#each header}}
+<script id="dashboard-table-hbs" type="text/x-handlebars-template">
+    {{#* inline "headerCell"}}
         <th><div class="cell">{{title}}</div></th>
-    {{/each}}
-</script>
-<script id="dashboard-body-row-hbs" type="text/x-handlebars-template">
-    {{#each content}}
+    {{/inline}}
+    {{#* inline "bodyCell"}}
         <td><div class="cell">{{value}}</div></td>
-    {{/each}}
+    {{/inline}}
+    {{#* inline "bodyCellRowTitle"}}
+        <th><div class="cell">{{value}}</div></th>
+    {{/inline}}
+    <table>
+        <thead>
+        <tr>
+            {{#each headerTitles}}
+                {{> headerCell}}
+            {{/each}}
+        </tr>
+        </thead>
+        <tbody>
+            {{#each contentRows}}
+            <tr>
+                {{#each this}}
+                    {{#if @index}}
+                        {{> bodyCell}}
+                    {{else}}
+                        {{> bodyCellRowTitle}}
+                    {{/if}}
+                {{/each}}
+            </tr>
+            {{/each}}
+        </tbody>
+    </table>
 </script>
 
 <script type="text/javascript" src="js/dataPreparation.js"></script>
