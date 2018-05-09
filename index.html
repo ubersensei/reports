@@ -9,34 +9,36 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 <body>
+
+<div id="page">
+    <div id="nav">
+        <img src="./assets/logo.svg" alt="Credit Suisse Logo">
+        <div class="wrapper"><i class="material-icons">keyboard_arrow_down</i><span>Account</span></div>
+        <div class="wrapper"><i class="material-icons">keyboard_arrow_down</i><span>Strategy</span></div>
+        <div class="wrapper"><i class="material-icons">keyboard_arrow_down</i><span>Management</span></div>
+        <div class="wrapper">Trends</div>
+        <div class="wrapper">Dashboard</div>
+    </div>
+    <div id="menu"></div>
+    <div id="content">
+        <div class="title">Dashboard</div>
+        <div id="console">
+            <div id="reportrange">
+                <i class="material-icons date">date_range</i>&nbsp;<span></span><i class="material-icons down">keyboard_arrow_down</i>
+            </div>
+            <div id="searchWrapper">
+                <input id="searchDashboardReports" type="text" placeholder="Search / Filter Reports">
+                <i class="material-icons">search</i>
+            </div>
+        </div>
+        <div id="dashboard-table"></div>
+    </div>
+</div>
 <div id="header-band">
     <div class="label header-text">GROUP OPS DATA SERVICES</div>
     <div class="login header-text">USER LOGIN</div>
 </div>
-<div id="nav">
-    <img src="./assets/logo.svg" alt="Credit Suisse Logo">
-    <div class="wrapper">Account</div>
-    <div class="wrapper">Strategy</div>
-    <div class="wrapper">Management</div>
-    <div class="wrapper">Trends</div>
-    <div class="wrapper">Dashboard</div>
-</div>
 
-<div id="content">
-    <div class="title">Dashboard</div>
-    <div id="console">
-        <div id="reportrange">
-            <i class="material-icons date">date_range</i>&nbsp;<span></span><i class="material-icons down">keyboard_arrow_down</i>
-        </div>
-        <div id="searchWrapper">
-            <input id="searchDashboardReports" type="text" placeholder="Search / Filter Reports">
-            <i class="material-icons">search</i>
-        </div>
-
-    </div>
-
-    <div id="dashboard-table"></div>
-</div>
 <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
 <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
 <script type="text/javascript" src="vendor/handlebars-v4.0.11.js"></script>

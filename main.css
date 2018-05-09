@@ -118,7 +118,7 @@ table {
 html,
 body {
   height: 100%;
-  overflow: auto; }
+  background-color: white; }
 
 html {
   box-sizing: border-box; }
@@ -136,8 +136,9 @@ body {
   color: #000; }
 
 body {
+  position: relative;
   font-size: 100%;
-  padding-bottom: 15em; }
+  overflow: auto; }
 
 a:link,
 a:visited,
@@ -171,8 +172,16 @@ input {
     border-bottom: 1px solid #a8251b;
     transition: border-bottom-color .15s ease-in; }
 
-#header-band {
+#page {
   position: relative;
+  margin: 1.75em 0 5em 0;
+  background-color: white; }
+
+#header-band {
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
   height: 1.75em;
   background-color: #272d34;
   color: white; }
@@ -194,26 +203,40 @@ input {
 
 #nav {
   position: relative;
-  height: 5.1875em;
-  padding-top: 1em; }
+  width: 100%;
+  padding: 1em 0;
+  border: 1px solid white;
+  overflow: hidden; }
   #nav img, #nav .wrapper {
     float: left;
     margin-right: 4em; }
   #nav .wrapper {
+    position: relative;
     padding-top: 0.5em;
     font-size: 0.875em;
-    font-weight: 700; }
+    font-weight: 700;
+    overflow: hidden; }
+    #nav .wrapper span, #nav .wrapper i {
+      float: left; }
+    #nav .wrapper i {
+      font-size: 1.2em;
+      padding-top: 0.2em;
+      color: #757575; }
     #nav .wrapper:hover {
       cursor: pointer;
       color: #757575;
       transition: color .15s ease-in; }
 
-#content {
-  padding-top: 1.5em; }
-  #content .filter-wrapper {
-    padding-top: 3em; }
+#menu {
+  width: 100%;
+  height: 25em;
+  background-color: #ebebeb; }
 
-#header, #nav, #content {
+#content {
+  padding-top: 1.7em;
+  border: 1px solid #f5f5f5; }
+
+#header-band, #nav, #content, #menu {
   padding-left: 7em; }
 
 .title {
@@ -237,12 +260,15 @@ td, th {
 thead {
   background-color: #ebebeb; }
 
-#dashboard-table th {
-  font-weight: 700;
-  max-width: 25em; }
-#dashboard-table td {
-  text-align: center;
-  max-width: 25em; }
+#dashboard-table {
+  display: inline-block;
+  padding-right: 7em; }
+  #dashboard-table th {
+    font-weight: 700;
+    max-width: 25em; }
+  #dashboard-table td {
+    text-align: center;
+    max-width: 25em; }
 
 #console {
   margin-top: 4em;
@@ -257,7 +283,7 @@ thead {
   cursor: pointer;
   padding: 0.3em 2em;
   border: 1px solid #ccc;
-  max-width: 17em; }
+  max-width: 18em; }
   #reportrange i {
     position: absolute;
     top: 0.2em;
@@ -268,7 +294,7 @@ thead {
     right: 0.3em; }
 
 #searchWrapper {
-  width: 17em;
+  width: 18em;
   position: relative;
   float: left; }
   #searchWrapper i {

@@ -1,15 +1,21 @@
+const state = {
+  searchStringDashboard: "",
+  relevantDatesGlobal: []
+};
+
 const createRelevantDates = (start, end) => {
-    const relevantDates = [];
-    const startDayDiff = moment().diff(moment(start), "days");
-    const endDayDiff = moment().diff(moment(end), "days");
-    for (let i = startDayDiff; i >= endDayDiff; i--) {
-        relevantDates.push(
-            moment()
-                .subtract(i, "days")
-                .format()
-        );
-    }
-    return relevantDates;
+  const relevantDates = [];
+  const startDayDiff = moment().diff(moment(start), "days");
+  const endDayDiff = moment().diff(moment(end), "days");
+  for (let i = startDayDiff; i >= endDayDiff; i--) {
+    relevantDates.push(
+      moment()
+        .subtract(i, "days")
+        .format()
+    );
+  }
+  state.relevantDatesGlobal = relevantDates;
+  return relevantDates;
 };
 
 const getDashboardContextTable = ({ relevantDates }) => {
@@ -30,13 +36,15 @@ const getDashboardContextTable = ({ relevantDates }) => {
   });
 
   const contentRows = {};
-  Object.keys(reports).map(reportId => {
-    contentRows[reportId] = [];
-    contentRows[reportId] = [
-      ...[{ value: reports[reportId].name }],
-      ...getOpenItemsForAReportByDates({ reportId, relevantDates })
-    ];
-  });
+  Object.keys(reports)
+    .filter(reportId => reports[reportId].name.toUpperCase().indexOf(state.searchStringDashboard.toUpperCase()) !== -1)
+    .map(reportId => {
+      contentRows[reportId] = [];
+      contentRows[reportId] = [
+        ...[{ value: reports[reportId].name }],
+        ...getOpenItemsForAReportByDates({ reportId, relevantDates })
+      ];
+    });
   return {
     headerTitles,
     contentRows

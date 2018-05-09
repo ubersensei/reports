@@ -35,9 +35,8 @@ $(document).ready(function() {
   );
   cb(start, end);
 
-
-  $('#searchDashboardReports').on("change paste keyup", function () {
-      console.log($(this).val())
-  })
-
+  $("#searchDashboardReports").on("change paste keyup", function() {
+    state.searchStringDashboard = $(this).val();
+    renderDashboardTable({ relevantDates: state.relevantDatesGlobal });
+  });
 });

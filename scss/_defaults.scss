@@ -1,7 +1,7 @@
 html,
 body {
   height: 100%; //set height to viewport
-  overflow: auto;
+  background-color:white;
 }
 
 html {
@@ -33,10 +33,12 @@ html {
 }
 
 body {
+  position: relative;
   font-size: 100%;
   @extend %font_pre;
-  padding-bottom: 15em;
+  overflow: auto;
 }
+
 
 a:link,
 a:visited,
