@@ -41,7 +41,7 @@ const getDashboardContextTable = ({ relevantDates }) => {
     .map(reportId => {
       contentRows[reportId] = [];
       contentRows[reportId] = [
-        ...[{ value: reports[reportId].name }],
+        ...[{ value: `<div class="report-name-dashboard-table">${reports[reportId].name}</div>` }],
         ...getOpenItemsForAReportByDates({ reportId, relevantDates })
       ];
     });
