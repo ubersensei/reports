@@ -1,13 +1,11 @@
 $(document).ready(function() {
   const $content = $("#content");
-  const start = moment().subtract(6, "days");
-  const end = moment();
-
-  const registerReportrangeDateRangePicker = cb => {
-    $("#reportrange").daterangepicker(
+  const registerDateRangePickerFunctions = cb => {
+    const $reportrange = $("#reportrange");
+    $reportrange.daterangepicker(
       {
-        startDate: start,
-        endDate: end,
+        startDate: state.startDate,
+        endDate: state.endDate,
         ranges: {
           Today: [moment(), moment()],
           Yesterday: [moment().subtract(1, "days"), moment().subtract(1, "days")],
@@ -26,55 +24,50 @@ $(document).ready(function() {
       },
       cb
     );
+    $reportrange.click(function() {
+      $("#report-range-backdrop").slideToggle(100);
+    });
+  };
+  const displayReportRange = (start, end, fn) => {
+    $("#reportrange span").html(start.format("MMM D, YYYY") + " - " + end.format("MMM D, YYYY"));
+    $("#report-range-backdrop").slideUp(100);
+    createRelevantDates(start, end);
+    fn();
   };
 
   const renderDashboardPage = () => {
+    resetStartEndDates();
     $content.html(dashboardContentHBS({ mainTitle: "Dashboard Items" }));
-    const renderDashboardTable = ({ relevantDates }) => {
-      $("#dashboard-table").html(dashboardTableHBS(getDashboardContextTable({ relevantDates })));
+    const renderDashboardTable = () => {
+      $("#dashboard-table").html(dashboardTableHBS(getDashboardContextTable()));
     };
-
     function cbDashboard(start, end) {
-      $("#reportrange span").html(start.format("MMM D, YYYY") + " - " + end.format("MMM D, YYYY"));
-      $("#report-range-backdrop").slideUp(100);
-      renderDashboardTable({ relevantDates: createRelevantDates(start, end) });
+      displayReportRange(start, end, renderDashboardTable);
     }
-    registerReportrangeDateRangePicker(cbDashboard);
-    cbDashboard(start, end);
-
-    $("#reportrange").click(function() {
-      $("#report-range-backdrop").slideToggle(100);
-    });
+    registerDateRangePickerFunctions(cbDashboard);
+    cbDashboard(state.startDate, state.endDate);
 
     $("#searchDashboardReports").on("change paste keyup", function() {
       state.searchStringDashboard = $(this).val();
-      renderDashboardTable({ relevantDates: state.relevantDatesGlobal });
+      renderDashboardTable();
     });
   };
 
   const renderReportPage = ({ reportId }) => {
+    resetStartEndDates();
     $("#content").html(individualReportContentHBS({ mainTitle: reportsTypes[reportId].name }));
-    const renderIndividualReportTable = ({ relevantDates }) => {
-      $("#individual-report-table").html(
-        individualReportTableHBS(getIndividualReportContextTable({ relevantDates, reportId: 1 }))
-      );
+    const renderIndividualReportTable = () => {
+      $("#individual-report-table").html(individualReportTableHBS(getIndividualReportContextTable({ reportId })));
     };
-
     function cbIndividualReport(start, end) {
-      $("#reportrange span").html(start.format("MMM D, YYYY") + " - " + end.format("MMM D, YYYY"));
-      $("#report-range-backdrop").slideUp(100);
-      renderIndividualReportTable({ relevantDates: createRelevantDates(start, end) });
+      displayReportRange(start, end, renderIndividualReportTable);
     }
-    registerReportrangeDateRangePicker(cbIndividualReport);
-    cbIndividualReport(start, end);
-
-    $("#reportrange").click(function() {
-      $("#report-range-backdrop").slideToggle(100);
-    });
+    registerDateRangePickerFunctions(cbIndividualReport);
+    cbIndividualReport(state.startDate, state.endDate);
 
     $("#searchIndividualReport").on("change paste keyup", function() {
       state.searchStringIndividualReport = $(this).val();
-      renderIndividualReportTable({ relevantDates: state.relevantDatesGlobal, reportId: 1 });
+      renderIndividualReportTable({ reportId });
     });
 
     //  TODO Message for others that Mockup is available only for 15a6

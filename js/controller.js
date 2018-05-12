@@ -1,6 +1,14 @@
 const state = {
   searchStringDashboard: "",
-  relevantDatesGlobal: []
+  searchStringIndividualReport: "",
+  relevantDatesGlobal: [],
+  startDate: "",
+  endDate: ""
+};
+
+resetStartEndDates = () => {
+  state.startDate = moment().subtract(6, "days");
+  state.endDate = moment();
 };
 
 const createRelevantDates = (start, end) => {
@@ -18,19 +26,17 @@ const createRelevantDates = (start, end) => {
   return relevantDates;
 };
 
-const getDashboardContextTable = ({ relevantDates }) => {
-  const getOpenItemsForAReportByDates = ({ reportId, relevantDates }) => {
+const getDashboardContextTable = () => {
+  const getOpenItemsForAReportByDates = ({ reportId }) => {
     const relevantOpenItemsByDates = [];
-    relevantDates.map(date => relevantOpenItemsByDates.push({ value: openItemsCounts[reportId][date] }));
+    state.relevantDatesGlobal.map(date => relevantOpenItemsByDates.push({ value: openItemsCounts[reportId][date] }));
     return relevantOpenItemsByDates;
   };
-
   const headerTitles = [];
   headerTitles[0] = { title: "Report Name" };
-  relevantDates.map(date => {
+  state.relevantDatesGlobal.map(date => {
     headerTitles.push({ title: moment(date).format("MMM DD") });
   });
-
   const contentRows = {};
   Object.keys(reportsTypes)
     .filter(
@@ -40,7 +46,7 @@ const getDashboardContextTable = ({ relevantDates }) => {
       contentRows[reportId] = [];
       contentRows[reportId] = [
         ...[{ value: `<div class="report-name-dashboard-table">${reportsTypes[reportId].name}</div>` }],
-        ...getOpenItemsForAReportByDates({ reportId, relevantDates })
+        ...getOpenItemsForAReportByDates({ reportId })
       ];
     });
   return {
@@ -51,24 +57,30 @@ const getDashboardContextTable = ({ relevantDates }) => {
 
 const getIndividualReportContextTable = ({ reportId }) => {
   const reportItems = reportItemsByReportId[reportId];
+  const indexOfStartDate = Object.keys(reportItems[1]).indexOf("Start Date");
   const headerTitles = Object.keys(reportItems[1]).map(title => ({ title }));
   const contentRows = {};
-  let s;
-  Object.keys(reportItems).map(itemId => {
-    contentRows[itemId] = Object.values(reportItems[itemId]).map(value => {
-      if (moment(value).isValid()) {
-        s = moment(value).format();
-        s = s.substring(0, s.indexOf("T"));
-        if (state.relevantDatesGlobal.indexOf(s) === -1) {
-          return { value: null };
+  let s, startDate, primaryCode;
+  Object.keys(reportItems)
+    .filter(itemId => {
+      startDate = Object.values(reportItems[itemId])[indexOfStartDate];
+      s = moment(startDate).format();
+      s = s.substring(0, s.indexOf("T"));
+      primaryCode = Object.values(reportItems[itemId])[0];
+      return (
+        state.relevantDatesGlobal.indexOf(s) !== -1 &&
+        primaryCode.toUpperCase().indexOf(state.searchStringIndividualReport.toUpperCase()) !== -1
+      );
+    })
+    .map(itemId => {
+      contentRows[itemId] = Object.values(reportItems[itemId]).map((value, index) => {
+        if (index === indexOfStartDate) {
+          return { value: moment(value).format("MMM DD, YYYY") };
         } else {
-          return { value: moment(value).format("MMM D, YYYY") };
+          return { value };
         }
-      } else {
-        return { value };
-      }
+      });
     });
-  });
   return {
     headerTitles,
     contentRows
