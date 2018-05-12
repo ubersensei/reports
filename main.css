@@ -269,7 +269,7 @@ input {
 #content {
   padding-top: 1.7em; }
 
-#header-band, #nav, #menu, #console, #dashboard-table {
+#header-band, #nav, #menu, #console, #dashboard-table, #individual-report-table {
   padding-left: 7em; }
 
 #main-title {
@@ -316,20 +316,20 @@ input {
     color: #757575;
     font-size: 1.8em; }
 
-#dashboard-table {
+#dashboard-table, #individual-report-table {
   display: inline-block;
   padding-right: 7em; }
-  #dashboard-table th {
+  #dashboard-table th, #individual-report-table th {
     font-weight: 700;
     max-width: 25em; }
-  #dashboard-table td {
+  #dashboard-table td, #individual-report-table td {
     text-align: center;
     max-width: 25em; }
-  #dashboard-table .report-name-dashboard-table {
+  #dashboard-table .report-name-dashboard-table, #individual-report-table .report-name-dashboard-table {
     text-align: left; }
 
 table {
-  margin-top: 1em;
+  margin-top: 2em;
   border-collapse: collapse; }
 
 tr:nth-child(even) {

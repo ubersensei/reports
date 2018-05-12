@@ -29,7 +29,7 @@ $(document).ready(function() {
   };
 
   const renderDashboardPage = () => {
-    $content.empty().html(dashboardContentHBS({ mainTitle: "Dashboard Items" }));
+    $content.html(dashboardContentHBS({ mainTitle: "Dashboard Items" }));
     const renderDashboardTable = ({ relevantDates }) => {
       $("#dashboard-table").html(dashboardTableHBS(getDashboardContextTable({ relevantDates })));
     };
@@ -53,13 +53,36 @@ $(document).ready(function() {
   };
 
   const renderReportPage = ({ reportId }) => {
-    $("#content")
-      .empty()
-      .html(individualReportContentHBS({ mainTitle: reportsTypes[reportId].name }));
+    $("#content").html(individualReportContentHBS({ mainTitle: reportsTypes[reportId].name }));
+    const renderIndividualReportTable = ({ relevantDates }) => {
+      $("#individual-report-table").html(
+        individualReportTableHBS(getIndividualReportContextTable({ relevantDates, reportId: 1 }))
+      );
+    };
 
-    //  TODO Mockup is available only for 15a6
+    function cbIndividualReport(start, end) {
+      $("#reportrange span").html(start.format("MMM D, YYYY") + " - " + end.format("MMM D, YYYY"));
+      $("#report-range-backdrop").slideUp(100);
+      renderIndividualReportTable({ relevantDates: createRelevantDates(start, end) });
+    }
+    registerReportrangeDateRangePicker(cbIndividualReport);
+    cbIndividualReport(start, end);
+
+    $("#reportrange").click(function() {
+      $("#report-range-backdrop").slideToggle(100);
+    });
+
+    $("#searchIndividualReport").on("change paste keyup", function() {
+      state.searchStringIndividualReport = $(this).val();
+      renderIndividualReportTable({ relevantDates: state.relevantDatesGlobal });
+    });
+
+    //  TODO Message for others that Mockup is available only for 15a6
   };
 
+  /**
+   * Render the pages
+   */
   $("#dashboard-link").click(function() {
     renderDashboardPage();
   });
@@ -69,7 +92,7 @@ $(document).ready(function() {
     $("#menu").slideUp(500);
   });
 
-  // renderReportPage({ reportId: 1 });
+  renderReportPage({ reportId: 1 });
 
   // the default rendering
   // renderDashboardPage();

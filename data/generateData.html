@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Generate Data</title>
+    <link rel="icon" type="image/png" href="https://cdnext.credit-suisse.com/assets/media/favicons/favicon-32x32.png" sizes="32x32">
+    <link rel="stylesheet" href="../main.css">
+    <style>
+        #controls-wrapper {
+            padding: 3.5em 3.5em 0 3.5em;
+        }
+        .button {
+            height: 2em;
+            width: 15em;
+            padding: 0 2em;
+            border: 1px solid #cdcdcd;
+            line-height: 2;
+            text-align: center;
+            margin-bottom: 2em;
+        }
+        .button:hover {
+            cursor: pointer;
+            background-color: #efefef;
+        }
+        #data {
+            padding: 5em;
+            font-size: 0.8em;
+        }
+    </style>
+</head>
+<body>
+<div id="controls-wrapper">
+    <div class="button" id="openItemsCountsButton">Open Items Counts</div>
+    <div class="button" id="currentTask">Current Random Data</div>
+</div>
+<div id="data"></div>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+<script type="text/javascript" src="utils.js"></script>
+<script type="text/javascript" src="../js/model.js"></script>
+<script type="text/javascript" src="generateData.js"></script>
+
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('#openItemsCountsButton').click(function () {
+            $('#data').html('const openItemsCounts = ' + JSON.stringify(generateOpenItemsCounts()));
+        });
+        $('#currentTask').click(function () {
+
+            $('#data').html('const reportItemsByReportId = ' + JSON.stringify(createReportItemsByReportId(25, 1)));
+
+        });
+    });
+</script>
+
+</body>
+</html>

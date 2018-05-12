@@ -96,9 +96,6 @@
     {{#* inline "bodyCell"}}
         <td><div class="cell">{{{value}}}</div></td>
     {{/inline}}
-    {{#* inline "bodyCellRowTitle"}}
-        <th><div class="cell">{{{value}}}</div></th>
-    {{/inline}}
     <table>
         <thead>
         <tr>
@@ -126,13 +123,39 @@
                 <i class="material-icons date">date_range</i>&nbsp;<span></span><i class="material-icons down">keyboard_arrow_down</i>
             </div>
             <div id="searchWrapper">
-                <input id="searchIndividualReport" type="text" placeholder="Search / Filter Reports">
+                <input id="searchIndividualReport" type="text" placeholder="Search/Filter by Primary Code">
                 <i class="material-icons">search</i>
             </div>
         </div>
         <div id="report-range-backdrop"></div>
         <div id="individual-report-table"></div>
     </div>
+</script>
+<script id="individual-report-table-hbs" type="text/x-handlebars-template">
+    {{#* inline "headerCell"}}
+        <th><div class="cell">{{title}}</div></th>
+    {{/inline}}
+    {{#* inline "bodyCell"}}
+        <td><div class="cell">{{{value}}}</div></td>
+    {{/inline}}
+    <table>
+        <thead>
+        <tr>
+            {{#each headerTitles}}
+                {{> headerCell}}
+            {{/each}}
+        </tr>
+        </thead>
+        <tbody>
+            {{#each contentRows}}
+                <tr>
+                    {{#each this}}
+                        {{> bodyCell}}
+                    {{/each}}
+                </tr>
+            {{/each}}
+        </tbody>
+    </table>
 </script>
 <script type="text/javascript" src="js/model.js"></script>
 <script type="text/javascript" src="js/controller.js"></script>

@@ -24,7 +24,7 @@ const getDashboardContextTable = ({ relevantDates }) => {
     relevantDates.map(date => {
       let s = moment(date).format();
       s = s.substring(0, s.indexOf("T"));
-      relevantOpenItemsByDates.push({ value: refinedOpenItemsCounts[reportId][s] });
+      relevantOpenItemsByDates.push({ value: openItemsCounts[reportId][s] });
     });
     return relevantOpenItemsByDates;
   };
@@ -37,7 +37,9 @@ const getDashboardContextTable = ({ relevantDates }) => {
 
   const contentRows = {};
   Object.keys(reportsTypes)
-    .filter(reportId => reportsTypes[reportId].name.toUpperCase().indexOf(state.searchStringDashboard.toUpperCase()) !== -1)
+    .filter(
+      reportId => reportsTypes[reportId].name.toUpperCase().indexOf(state.searchStringDashboard.toUpperCase()) !== -1
+    )
     .map(reportId => {
       contentRows[reportId] = [];
       contentRows[reportId] = [
@@ -45,6 +47,19 @@ const getDashboardContextTable = ({ relevantDates }) => {
         ...getOpenItemsForAReportByDates({ reportId, relevantDates })
       ];
     });
+  return {
+    headerTitles,
+    contentRows
+  };
+};
+
+const getIndividualReportContextTable = ({ relevantDates, reportId }) => {
+  const reportItems = reportItemsByReportId[reportId];
+  const headerTitles = Object.keys(reportItems[1]).map(title => ({title}));
+  const contentRows = {};
+  Object.keys(reportItems).map(itemId => {
+    contentRows[itemId] = Object.values(reportItems[itemId]).map(value => ({value}));
+  });
   return {
     headerTitles,
     contentRows
