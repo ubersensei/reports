@@ -55,7 +55,7 @@ $(document).ready(function() {
   const renderReportPage = ({ reportId }) => {
     $("#content")
       .empty()
-      .html(individualReportContentHBS({ mainTitle: reports[reportId].name }));
+      .html(individualReportContentHBS({ mainTitle: reportsTypes[reportId].name }));
 
     //  TODO Mockup is available only for 15a6
   };

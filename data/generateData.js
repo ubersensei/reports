@@ -8,8 +8,8 @@ const generateRefinedOpenItemsCounts = () => {
 
     let baseline, tencent;
     const openItemsCounts = {};
-    Object.keys(reports).map(id => {
-        baseline = reports[id].baseline;
+    Object.keys(reportsTypes).map(id => {
+        baseline = reportsTypes[id].baseline;
         tencent = Math.ceil(baseline * 0.1);
         openItemsCounts[id] = {};
         dates.map(date => {

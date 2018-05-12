@@ -36,12 +36,12 @@ const getDashboardContextTable = ({ relevantDates }) => {
   });
 
   const contentRows = {};
-  Object.keys(reports)
-    .filter(reportId => reports[reportId].name.toUpperCase().indexOf(state.searchStringDashboard.toUpperCase()) !== -1)
+  Object.keys(reportsTypes)
+    .filter(reportId => reportsTypes[reportId].name.toUpperCase().indexOf(state.searchStringDashboard.toUpperCase()) !== -1)
     .map(reportId => {
       contentRows[reportId] = [];
       contentRows[reportId] = [
-        ...[{ value: `<div class="report-name-dashboard-table">${reports[reportId].name}</div>` }],
+        ...[{ value: `<div class="report-name-dashboard-table">${reportsTypes[reportId].name}</div>` }],
         ...getOpenItemsForAReportByDates({ reportId, relevantDates })
       ];
     });

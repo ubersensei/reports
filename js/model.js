@@ -1,4 +1,4 @@
-const reports = {
+const reportsTypes = {
   1: { name: "15a6 Active Report", baseline: 7112 },
   2: { name: "15a6 Inactive Report", baseline: 1088 },
   3: { name: "APAC Lifecycle Request Report", baseline: 1939 },
@@ -35,6 +35,8 @@ const reports = {
   34: { name: "SDS ICON DEVN Report", baseline: 0 },
   35: { name: "SDS Legal Name Account Name Report", baseline: 118 }
 };
+
+
 
 const refinedOpenItemsCounts = {
   "1": {
