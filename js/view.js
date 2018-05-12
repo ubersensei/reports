@@ -74,7 +74,7 @@ $(document).ready(function() {
 
     $("#searchIndividualReport").on("change paste keyup", function() {
       state.searchStringIndividualReport = $(this).val();
-      renderIndividualReportTable({ relevantDates: state.relevantDatesGlobal });
+      renderIndividualReportTable({ relevantDates: state.relevantDatesGlobal, reportId: 1 });
     });
 
     //  TODO Message for others that Mockup is available only for 15a6

@@ -74,7 +74,6 @@ const createReportItemsByReportId = (n_items, reportId) => {
             item["Unique ID"] = uniqueId;
             item["Start Date"] = moment().subtract(getRandomInt(1, oldestAgeOfTheReportInDays), "days");
             lastRandomInt = 1;
-
             reportBasedTasks[reportId].map(task => {
                 //  ensure previous task is completed before next task
                 lastRandomInt = getRandomInt(0, 2 * lastRandomInt);

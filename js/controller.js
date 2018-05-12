@@ -8,11 +8,11 @@ const createRelevantDates = (start, end) => {
   const startDayDiff = moment().diff(moment(start), "days");
   const endDayDiff = moment().diff(moment(end), "days");
   for (let i = startDayDiff; i >= endDayDiff; i--) {
-    relevantDates.push(
-      moment()
-        .subtract(i, "days")
-        .format()
-    );
+    let s = moment()
+      .subtract(i, "days")
+      .format();
+    s = s.substring(0, s.indexOf("T"));
+    relevantDates.push(s);
   }
   state.relevantDatesGlobal = relevantDates;
   return relevantDates;
@@ -21,11 +21,7 @@ const createRelevantDates = (start, end) => {
 const getDashboardContextTable = ({ relevantDates }) => {
   const getOpenItemsForAReportByDates = ({ reportId, relevantDates }) => {
     const relevantOpenItemsByDates = [];
-    relevantDates.map(date => {
-      let s = moment(date).format();
-      s = s.substring(0, s.indexOf("T"));
-      relevantOpenItemsByDates.push({ value: openItemsCounts[reportId][s] });
-    });
+    relevantDates.map(date => relevantOpenItemsByDates.push({ value: openItemsCounts[reportId][date] }));
     return relevantOpenItemsByDates;
   };
 
@@ -53,12 +49,25 @@ const getDashboardContextTable = ({ relevantDates }) => {
   };
 };
 
-const getIndividualReportContextTable = ({ relevantDates, reportId }) => {
+const getIndividualReportContextTable = ({ reportId }) => {
   const reportItems = reportItemsByReportId[reportId];
-  const headerTitles = Object.keys(reportItems[1]).map(title => ({title}));
+  const headerTitles = Object.keys(reportItems[1]).map(title => ({ title }));
   const contentRows = {};
+  let s;
   Object.keys(reportItems).map(itemId => {
-    contentRows[itemId] = Object.values(reportItems[itemId]).map(value => ({value}));
+    contentRows[itemId] = Object.values(reportItems[itemId]).map(value => {
+      if (moment(value).isValid()) {
+        s = moment(value).format();
+        s = s.substring(0, s.indexOf("T"));
+        if (state.relevantDatesGlobal.indexOf(s) === -1) {
+          return { value: null };
+        } else {
+          return { value: moment(value).format("MMM D, YYYY") };
+        }
+      } else {
+        return { value };
+      }
+    });
   });
   return {
     headerTitles,
