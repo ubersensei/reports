@@ -99,6 +99,7 @@
 }
 #menu-header {
   padding: 2em 0 1em 0;
+  font-weight: 700;
   i {
     font-size: 1.8em;
     float: right;
@@ -127,7 +128,6 @@
 }
 
 #console {
-  //display: none;
   margin-top: 4em;
   position: relative;
   overflow: hidden;
@@ -151,7 +151,7 @@ i {
   }
 }
 
-#report-range-background {
+#report-range-backdrop {
   display: none;
   background-color: $blackTint6;
   height: 21em;

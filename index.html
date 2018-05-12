@@ -14,7 +14,7 @@
     <div id="nav">
         <img src="./assets/logo.svg" alt="Credit Suisse Logo">
         <div class="wrapper" id="dashboard-link">Dashboard</div>
-        <div class="wrapper">Trends</div>
+        <div class="wrapper" id="trends-link">Trends</div>
         <div class="wrapper" id="account-menu-link"><i class="material-icons">keyboard_arrow_down</i><span>Account</span></div>
         <div class="wrapper"><i class="material-icons">keyboard_arrow_down</i><span>Strategy</span></div>
         <div class="wrapper"><i class="material-icons">keyboard_arrow_down</i><span>Management</span></div>
@@ -29,7 +29,7 @@
                 <div class="sub-menu-header">Production Reports</div>
                 <div class="sub-menu-content">
                     <ul>
-                        <li>15a6 Active Report</li>
+                        <li data-reportid="1">15a6 Active Report</li>
                         <li>15a6 Inactive Report</li>
                         <li>CCR Nacks</li>
                         <li>Database Only Accounts Reports</li>
@@ -74,18 +74,20 @@
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
 <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
 <script id="dashboard-content-hbs" type="text/x-handlebars-template">
-    <div id="main-title">{{mainTitle}}</div>
-    <div id="console">
-        <div id="reportrange">
-            <i class="material-icons date">date_range</i>&nbsp;<span></span><i class="material-icons down">keyboard_arrow_down</i>
+    <div id="dashboard-section">
+        <div id="main-title">{{mainTitle}}</div>
+        <div id="console">
+            <div id="reportrange">
+                <i class="material-icons date">date_range</i>&nbsp;<span></span><i class="material-icons down">keyboard_arrow_down</i>
+            </div>
+            <div id="searchWrapper">
+                <input id="searchDashboardReports" type="text" placeholder="Search / Filter Reports">
+                <i class="material-icons">search</i>
+            </div>
         </div>
-        <div id="searchWrapper">
-            <input id="searchDashboardReports" type="text" placeholder="Search / Filter Reports">
-            <i class="material-icons">search</i>
-        </div>
+        <div id="report-range-backdrop"></div>
+        <div id="dashboard-table"></div>
     </div>
-    <div id="report-range-background"></div>
-    <div id="dashboard-table"></div>
 </script>
 <script id="dashboard-table-hbs" type="text/x-handlebars-template">
     {{#* inline "headerCell"}}
@@ -115,6 +117,22 @@
             {{/each}}
         </tbody>
     </table>
+</script>
+<script id="individual-report-content-hbs" type="text/x-handlebars-template">
+    <div id="individual-report-section">
+        <div id="main-title">{{mainTitle}}</div>
+        <div id="console">
+            <div id="reportrange">
+                <i class="material-icons date">date_range</i>&nbsp;<span></span><i class="material-icons down">keyboard_arrow_down</i>
+            </div>
+            <div id="searchWrapper">
+                <input id="searchIndividualReport" type="text" placeholder="Search / Filter Reports">
+                <i class="material-icons">search</i>
+            </div>
+        </div>
+        <div id="report-range-backdrop"></div>
+        <div id="individual-report-table"></div>
+    </div>
 </script>
 <script type="text/javascript" src="js/model.js"></script>
 <script type="text/javascript" src="js/controller.js"></script>

@@ -1,24 +1,9 @@
 $(document).ready(function() {
-  const renderDashboardPage = () => {
-    const start = moment().subtract(6, "days");
-    const end = moment();
+  const $content = $("#content");
+  const start = moment().subtract(6, "days");
+  const end = moment();
 
-    // $("#main-title").html("Dashboard - Open Items");
-
-    $("#content")
-      .empty()
-      .html(dashboardContentHBS({mainTitle: 'Dashboard Items'}));
-
-    const renderDashboardTable = ({ relevantDates }) => {
-      $("#dashboard-table").html(dashboardTableHBS(getDashboardContextTable({ relevantDates })));
-    };
-
-    function cbAfterDateRangeSelection(start, end) {
-      $("#reportrange span").html(start.format("MMM D, YYYY") + " - " + end.format("MMM D, YYYY"));
-      $("#report-range-background").slideUp(100);
-      renderDashboardTable({ relevantDates: createRelevantDates(start, end) });
-    }
-
+  const registerReportrangeDateRangePicker = cb => {
     $("#reportrange").daterangepicker(
       {
         startDate: start,
@@ -39,12 +24,26 @@ $(document).ready(function() {
           ]
         }
       },
-      cbAfterDateRangeSelection
+      cb
     );
-    cbAfterDateRangeSelection(start, end);
+  };
+
+  const renderDashboardPage = () => {
+    $content.empty().html(dashboardContentHBS({ mainTitle: "Dashboard Items" }));
+    const renderDashboardTable = ({ relevantDates }) => {
+      $("#dashboard-table").html(dashboardTableHBS(getDashboardContextTable({ relevantDates })));
+    };
+
+    function cbDashboard(start, end) {
+      $("#reportrange span").html(start.format("MMM D, YYYY") + " - " + end.format("MMM D, YYYY"));
+      $("#report-range-backdrop").slideUp(100);
+      renderDashboardTable({ relevantDates: createRelevantDates(start, end) });
+    }
+    registerReportrangeDateRangePicker(cbDashboard);
+    cbDashboard(start, end);
 
     $("#reportrange").click(function() {
-      $("#report-range-background").slideToggle(100);
+      $("#report-range-backdrop").slideToggle(100);
     });
 
     $("#searchDashboardReports").on("change paste keyup", function() {
@@ -53,14 +52,25 @@ $(document).ready(function() {
     });
   };
 
-  const renderReportPage = reportId => {
-    $("#main-title").html(reports[reportId].name);
-  };
+  const renderReportPage = ({ reportId }) => {
+    $("#content")
+      .empty()
+      .html(individualReportContentHBS({ mainTitle: reports[reportId].name }));
 
-  // renderDashboardPage();
-  renderReportPage(1);
+    //  TODO Mockup is available only for 15a6
+  };
 
   $("#dashboard-link").click(function() {
     renderDashboardPage();
   });
+
+  $(".sub-menu-content li").click(function() {
+    renderReportPage({ reportId: $(this).attr("data-reportid") });
+    $("#menu").slideUp(500);
+  });
+
+  // renderReportPage({ reportId: 1 });
+
+  // the default rendering
+  // renderDashboardPage();
 });
