@@ -30,14 +30,14 @@
                 <div class="sub-menu-content">
                     <ul>
                         <li data-reportid="1">15a6 Active Report</li>
-                        <li>15a6 Inactive Report</li>
-                        <li>CCR Nacks</li>
-                        <li>Database Only Accounts Reports</li>
-                        <li>Dublin Direct</li>
-                        <li>NTPA London Control Reports</li>
-                        <li>NTPA NY Control Reports</li>
-                        <li>Prime Broker Recon Reports</li>
-                        <li>SDS Control Reports</li>
+                        <li data-reportid="2">15a6 Inactive Report</li>
+                        <li data-reportid="5">CCR Nacks</li>
+                        <li data-reportid="14">DB Only: Closure Above Xref Report</li>
+                        <li data-reportid="16">Dublin Direct</li>
+                        <li data-reportid="27">NTPA London Comments Report</li>
+                        <li data-reportid="28">NTPA NY Comments Report</li>
+                        <li data-reportid="30">Prime Broker Recon Report</li>
+                        <li data-reportid="32">SDS Comments for Amends Report</li>
                     </ul>
                 </div>
             </div>
@@ -129,6 +129,15 @@
         </div>
         <div id="report-range-backdrop"></div>
         <div id="individual-report-table"></div>
+    </div>
+</script>
+<script id="individual-report-no-content-hbs" type="text/x-handlebars-template">
+    <div id="individual-report-section">
+        <div id="main-title">{{mainTitle}}</div>
+        <div id="no-content-explanation">
+            <p>Nothing to report here!</p>
+            <p>Try clicking the first report or go to Dashboard.</p>
+        </div>
     </div>
 </script>
 <script id="individual-report-table-hbs" type="text/x-handlebars-template">

@@ -269,7 +269,7 @@ input {
 #content {
   padding-top: 1.7em; }
 
-#header-band, #nav, #menu, #console, #dashboard-table, #individual-report-table {
+#header-band, #nav, #menu, #console, #dashboard-table, #individual-report-table, #no-content-explanation {
   padding-left: 7em; }
 
 #main-title {

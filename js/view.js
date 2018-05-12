@@ -55,22 +55,25 @@ $(document).ready(function() {
 
   const renderReportPage = ({ reportId }) => {
     resetStartEndDates();
-    $("#content").html(individualReportContentHBS({ mainTitle: reportsTypes[reportId].name }));
-    const renderIndividualReportTable = () => {
-      $("#individual-report-table").html(individualReportTableHBS(getIndividualReportContextTable({ reportId })));
-    };
-    function cbIndividualReport(start, end) {
-      displayReportRange(start, end, renderIndividualReportTable);
+    const reportItems = reportItemsByReportId[reportId];
+    if (typeof reportItems !== "undefined" && Object.keys(reportItems).length) {
+      $("#content").html(individualReportContentHBS({ mainTitle: reportsTypes[reportId].name }));
+      const renderIndividualReportTable = () => {
+        $("#individual-report-table").html(individualReportTableHBS(getIndividualReportContextTable({ reportId })));
+      };
+      function cbIndividualReport(start, end) {
+        displayReportRange(start, end, renderIndividualReportTable);
+      }
+      registerDateRangePickerFunctions(cbIndividualReport);
+      cbIndividualReport(state.startDate, state.endDate);
+
+      $("#searchIndividualReport").on("change paste keyup", function() {
+        state.searchStringIndividualReport = $(this).val();
+        renderIndividualReportTable({ reportId });
+      });
+    } else {
+        $("#content").html(individualReportNoContentHBS({ mainTitle: reportsTypes[reportId].name }));
     }
-    registerDateRangePickerFunctions(cbIndividualReport);
-    cbIndividualReport(state.startDate, state.endDate);
-
-    $("#searchIndividualReport").on("change paste keyup", function() {
-      state.searchStringIndividualReport = $(this).val();
-      renderIndividualReportTable({ reportId });
-    });
-
-    //  TODO Message for others that Mockup is available only for 15a6
   };
 
   /**
