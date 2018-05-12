@@ -13,15 +13,55 @@
 <div id="page">
     <div id="nav">
         <img src="./assets/logo.svg" alt="Credit Suisse Logo">
-        <div class="wrapper"><i class="material-icons">keyboard_arrow_down</i><span>Account</span></div>
+        <div class="wrapper">Dashboard</div>
+        <div class="wrapper">Trends</div>
+        <div class="wrapper" id="account-menu-link"><i class="material-icons">keyboard_arrow_down</i><span>Account</span></div>
         <div class="wrapper"><i class="material-icons">keyboard_arrow_down</i><span>Strategy</span></div>
         <div class="wrapper"><i class="material-icons">keyboard_arrow_down</i><span>Management</span></div>
-        <div class="wrapper">Trends</div>
-        <div class="wrapper">Dashboard</div>
     </div>
-    <div id="menu"></div>
+    <div id="menu">
+        <div id="account-menu">
+            <div id="menu-header">
+                <i class="material-icons">close</i>
+                <div class="title">Choose your report</div>
+            </div>
+            <div class="sub-menu">
+                <div class="sub-menu-header">Production Reports</div>
+                <div class="sub-menu-content">
+                    <ul>
+                        <li>15a6 Actives/Inactives Report</li>
+                        <li>CCR Nacks</li>
+                        <li>Database Only Accounts Reports</li>
+                        <li>Dublin Direct</li>
+                        <li>NTPA London Control Reports</li>
+                        <li>NTPA NY Control Reports</li>
+                        <li>Prime Broker Recon Reports</li>
+                        <li>SDS Control Reports</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="sub-menu">
+                <div class="sub-menu-header">Apac Control Reports</div>
+                <div class="sub-menu-content">
+                    <ul>
+                        <li>Apac Workflow Report</li>
+                        <li>CR:1 Party Amends Report</li>
+                        <li>CR:2 Valid Customer Name Report</li>
+                        <li>CR:3 Non Share Xref FXOPS/GSI/SDS Report</li>
+                        <li>CR:7 SDS Legal Name Recon Report</li>
+                        <li>CR:8 Missing APAC Report</li>
+                        <li>CR:10 ICON Party Address Report</li>
+                        <li>FOS/GSI Mandatory Fields Report</li>
+                        <li>FXOPS Account Name Override Report</li>
+                        <li>India Report for New Parties</li>
+                        <li>SDS Missing Confirms Report</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
     <div id="content">
-        <div class="title">Dashboard</div>
+        <div id="main-title">Dashboard</div>
         <div id="console">
             <div id="reportrange">
                 <i class="material-icons date">date_range</i>&nbsp;<span></span><i class="material-icons down">keyboard_arrow_down</i>
@@ -31,6 +71,7 @@
                 <i class="material-icons">search</i>
             </div>
         </div>
+        <div id="report-range-background"></div>
         <div id="dashboard-table"></div>
     </div>
 </div>
@@ -80,9 +121,10 @@
     </table>
 </script>
 
-<script type="text/javascript" src="js/raw.js"></script>
-<script type="text/javascript" src="js/dataPreparation.js"></script>
+<script type="text/javascript" src="js/model.js"></script>
+<script type="text/javascript" src="js/controller.js"></script>
 <script type="text/javascript" src="stubsHBS/stubsHBS.js"></script>
-<script type="text/javascript" src="js/rendering.js"></script>
+<script type="text/javascript" src="js/view.js"></script>
+<script type="text/javascript" src="js/ui.js"></script>
 </body>
 </html>

@@ -21,7 +21,7 @@
   .login {
     position: absolute;
     top: 0;
-    left: 32.7em;
+    left: 32.9em;
     background-color: $red;
     height: 2.8em;
     padding: 0 2em;
@@ -35,9 +35,8 @@
 #nav {
   position: relative;
   width: 100%;
-  //height: 5.1875em;
+  height: 5.1875em;
   padding: 1em 0;
-  border: 1px solid white;
   overflow: hidden;
   img, .wrapper {
     float: left;
@@ -66,56 +65,70 @@
   }
 }
 #menu {
+  display: none;
   width: 100%;
-  height: 25em;
+  padding-bottom: 3em;
   background-color: $blackTint6;
+  overflow: hidden;
+  .sub-menu {
+    float: left;
+    margin-right: 2em;
+    border-top: 1px solid $blackTint3;
+    padding-top: 1em;
+  }
+  .sub-menu-header {
+    font-weight: 700;
+    margin-bottom: 0.6875em;
+  }
+  .sub-menu-content {
+    font-size: 0.875em;
+    ul {
+      margin-top: 1.6875em;
+    }
+    li {
+      margin-top: 0.625em;
+      &:hover {
+        cursor: pointer;
+        text-decoration: underline;
+      }
+    }
+  }
 }
+#account-menu {
+  max-width: 53.4em;
+}
+#menu-header {
+  padding: 2em 0 1em 0;
+  i {
+    font-size: 1.8em;
+    float: right;
+    &:hover {
+      cursor: pointer;
+      color: $blackTint2;
+    }
+  }
+  .title {
+    font-size: 1.125em;
+  }
+}
+
 
 #content {
   padding-top: 1.7em;
-  border: 1px solid $white;
 }
-#header-band, #nav, #content, #menu {
+#header-band, #nav, #menu, #console, #dashboard-table {
   padding-left: 7em;
 }
 
-.title {
+#main-title {
+  margin-left: 2.8em;
   font-weight: 700;
   font-size: 2.5em;
 }
 
-table {
-  margin-top: 1em;
-  border-collapse: collapse;
-}
 
-td, th {
-  position: relative;
-  border: 1px solid $blackTint4;
-  text-align: left;
-  .cell {
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    padding:0.3em 0.5em;
-  }
-}
-thead {
-  background-color: $blackTint6;
-}
 
-#dashboard-table {
-  display: inline-block;
-  padding-right: 7em;
-  th {
-    font-weight: 700;
-    max-width: 25em;
-  }
-  td {
-    text-align: center;
-    max-width: 25em;
-  }
-}
+
 #console {
   margin-top: 4em;
   position: relative;
@@ -140,6 +153,12 @@ i {
   }
 }
 
+#report-range-background {
+  display: none;
+  background-color: $blackTint6;
+  height: 21em;
+}
+
 #searchWrapper {
   width: 18em;
   position: relative;
@@ -147,8 +166,41 @@ i {
   i {
     position: absolute;
     top: 0.2em;
-    right: 0.1em;
+    right: -0.1em;
     color: $blackTint2;
     font-size: 1.8em;
   }
+}
+
+#dashboard-table {
+  display: inline-block;
+  padding-right: 7em;
+  th {
+    font-weight: 700;
+    max-width: 25em;
+  }
+  td {
+    text-align: center;
+    max-width: 25em;
+  }
+}
+
+table {
+  margin-top: 1em;
+  border-collapse: collapse;
+}
+
+td, th {
+  position: relative;
+  border: 1px solid $blackTint4;
+  text-align: left;
+  .cell {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    padding:0.3em 0.5em;
+  }
+}
+thead {
+  background-color: $blackTint6;
 }

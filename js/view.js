@@ -8,6 +8,7 @@ $(document).ready(function() {
 
   function cb(start, end) {
     $("#reportrange span").html(start.format("MMM D, YYYY") + " - " + end.format("MMM D, YYYY"));
+      $('#report-range-background').slideUp(500);
     renderDashboardTable({ relevantDates: createRelevantDates(start, end) });
   }
 
@@ -34,6 +35,10 @@ $(document).ready(function() {
     cb
   );
   cb(start, end);
+
+  $('#reportrange').click(function () {
+      $('#report-range-background').slideToggle(500);
+  });
 
   $("#searchDashboardReports").on("change paste keyup", function() {
     state.searchStringDashboard = $(this).val();
