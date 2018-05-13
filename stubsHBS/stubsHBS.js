@@ -5,3 +5,5 @@ const individualReportContentHBS = Handlebars.compile($("#individual-report-cont
 const individualReportNoContentHBS = Handlebars.compile($("#individual-report-no-content-hbs").html());
 const individualReportTableHBS = Handlebars.compile($("#individual-report-table-hbs").html());
 
+const completionStatusFilterHBS = Handlebars.compile($("#completion-status-filter").html());
+

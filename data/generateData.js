@@ -92,10 +92,9 @@ const createReportItemsByReportId = (n_items, reportId) => {
       reportBasedTasks[reportId].map(task => {
         //  ensure previous task is completed before next task
         lastRandomInt = getRandomInt(0, 2 * lastRandomInt);
-        return (item[`&lt;div class='task-header'&gt;&lt;i class='material-icons'&gt;filter_list&lt;/i&gt;&lt;p&gt;${task}&lt;/p&gt;&lt;/div&gt;`] =
+        // return (item[`&lt;div class='task-header'&gt;&lt;i class='material-icons'&gt;filter_list&lt;/i&gt;&lt;p&gt;${task}&lt;/p&gt;&lt;/div&gt;`] =
+        return (item[`&lt;div class='task-header'&gt;&lt;i class='material-icons' data-reportid=${reportId} data-task=${task}&gt;filter_list&lt;/i&gt;&lt;p&gt;${task}&lt;/p&gt;&lt;/div&gt;`] =
           lastRandomInt === 0 ? statusWIPStub : statusCompleteStub);
-        //   return (item[`&lt;div class='task-header'&gt;${task}&lt;/div&gt;`] =
-        //       lastRandomInt === 0 ? '&lt;div class=\'status\'&gt;WIP&lt;/div&gt;' : '&lt;div class=\'status\'&gt;Complete&lt;/div&gt;');
       });
       item[`&lt;div class='task-header'&gt;Commentary&lt;/div&gt;`] = "No Comments";
       reportItems[n] = item;

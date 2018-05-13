@@ -229,9 +229,10 @@ thead {
   i {
     float: right;
     color: $blackTint2;
-    margin-top: 0.2em;
+    margin-top: 0.3em;
     &:hover {
       cursor: pointer;
+      color: $black;
     }
   }
 }

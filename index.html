@@ -165,9 +165,11 @@
         </tbody>
     </table>
 </script>
-<script id="completion-status-sort" type="text/x-handlebars-template">
-    <div class="sort-options-wrapper">
-
+<script id="completion-status-filter" type="text/x-handlebars-template">
+    <div class="filter-options-wrapper" data-reportid={{reportID}} data-task={{task}}>
+        <div class="options-wrapper"><i class="material-icons">radio_button_unchecked</i>WIP</div>
+        <div class="options-wrapper"><i class="material-icons">radio_button_unchecked</i>Completed</div>
+        <div class="options-wrapper"><i class="material-icons">radio_button_unchecked</i>Both</div>
     </div>
 </script>
 <script type="text/javascript" src="js/model.js"></script>

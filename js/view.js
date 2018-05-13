@@ -45,7 +45,6 @@ $(document).ready(function() {
     function cbDashboard(start, end) {
       displayReportRange(start, end, renderDashboardTable);
         $(".report-name-dashboard-table").click(function() {
-            // console.log($(this).attr("data-reportid"))
             renderReportPage({ reportId: $(this).attr("data-reportid") });
         });
     }
@@ -68,6 +67,9 @@ $(document).ready(function() {
       };
       function cbIndividualReport(start, end) {
         displayReportRange(start, end, renderIndividualReportTable);
+        $('.task-header i').click(function () {
+            console.log($(this).attr("data-reportid"), ", ", $(this).attr("data-task"));
+        })
       }
       registerDateRangePickerFunctions(cbIndividualReport);
       cbIndividualReport(state.startDate, state.endDate);

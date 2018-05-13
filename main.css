@@ -364,9 +364,10 @@ thead {
   .task-header i {
     float: right;
     color: #757575;
-    margin-top: 0.2em; }
+    margin-top: 0.3em; }
     .task-header i:hover {
-      cursor: pointer; }
+      cursor: pointer;
+      color: #000; }
 
 .align-table-text-left {
   text-align: left; }
