@@ -5,5 +5,7 @@ $(document).ready(function() {
 
   $('#menu-header i').click(function () {
       $("#menu").slideUp(500);
-  })
+  });
+
+
 });

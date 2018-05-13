@@ -327,9 +327,14 @@ input {
     max-width: 25em; }
   #dashboard-table .report-name-dashboard-table, #individual-report-table .report-name-dashboard-table {
     text-align: left; }
+    #dashboard-table .report-name-dashboard-table:hover, #individual-report-table .report-name-dashboard-table:hover {
+      cursor: pointer;
+      color: #a8251b;
+      text-decoration: underline; }
 
 table {
   margin-top: 2em;
+  padding: 0;
   border-collapse: collapse; }
 
 tr:nth-child(even) {
@@ -338,14 +343,51 @@ tr:nth-child(even) {
 td, th {
   position: relative;
   border: 1px solid #cccccc;
-  text-align: left; }
+  margin: 0;
+  padding: 0; }
   td .cell, th .cell {
+    margin: 0;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    padding: 0.3em 0.5em; }
+    padding: 0 0.5em;
+    line-height: 2.5; }
 
 thead {
   background-color: #ebebeb; }
+
+.task-header {
+  position: relative;
+  color: #a8251b;
+  text-align: left;
+  min-width: 10em; }
+  .task-header i {
+    float: right;
+    color: #757575;
+    margin-top: 0.2em; }
+    .task-header i:hover {
+      cursor: pointer; }
+
+.align-table-text-left {
+  text-align: left; }
+
+.status {
+  font-size: 0.8em; }
+  .status > div:first-of-type {
+    margin-right: 1em; }
+  .status .active, .status .inactive {
+    display: inline-block; }
+  .status .active {
+    color: #004c97;
+    font-weight: 700; }
+  .status .inactive {
+    color: #cccccc; }
+    .status .inactive:hover {
+      cursor: pointer;
+      color: #757575; }
+  .status i {
+    position: relative;
+    top: 0.2em;
+    margin-right: 0.08em; }
 
 /*# sourceMappingURL=main.css.map */

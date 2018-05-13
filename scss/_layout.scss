@@ -183,11 +183,19 @@ i {
   }
   .report-name-dashboard-table {
     text-align: left;
+    &:hover {
+      cursor: pointer;
+      color: $darkRed;
+      text-decoration: underline;
+    }
   }
 }
 
+
+
 table {
   margin-top: 2em;
+  padding: 0;
   border-collapse: collapse;
 }
 
@@ -198,14 +206,65 @@ table {
 td, th {
   position: relative;
   border: 1px solid $blackTint4;
-  text-align: left;
+  margin: 0;
+  padding: 0;
   .cell {
+    margin: 0;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    padding:0.3em 0.5em;
+    padding:0 0.5em;
+    line-height: 2.5;
   }
 }
 thead {
   background-color: $blackTint6;
+}
+
+.task-header {
+  position: relative;
+  color: $darkRed;
+  text-align: left;
+  min-width: 10em;
+  i {
+    float: right;
+    color: $blackTint2;
+    margin-top: 0.2em;
+    &:hover {
+      cursor: pointer;
+    }
+  }
+}
+
+.align-table-text-left  {
+  text-align: left;
+}
+
+.status {
+  font-size: 0.8em;
+  > div {
+    &:first-of-type {
+      margin-right: 1em;
+    }
+  }
+  .active, .inactive {
+    display: inline-block;
+  }
+  .active {
+    color: $darkBlue;
+    font-weight: 700;
+  }
+  .inactive {
+    color: $blackTint4;
+    &:hover {
+      cursor: pointer;
+      color: $blackTint2;
+    }
+  }
+  i {
+    position: relative;
+    top: 0.2em;
+    margin-right: 0.08em;
+  }
+
 }

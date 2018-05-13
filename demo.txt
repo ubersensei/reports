@@ -1,0 +1,22 @@
+Create the lastest dashboard data
+
+Show that it is easy to add more attributes
+    - uncomment during data generation
+
+Favicon.
+
+No pagination. Why is it needed ?
+
+Minimum scroll.
+
+Amend. Needs Login. Toast.
+
+Login - user images.
+    - search suggest.
+
+
+
+
+
+
+

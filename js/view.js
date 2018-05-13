@@ -41,8 +41,13 @@ $(document).ready(function() {
     const renderDashboardTable = () => {
       $("#dashboard-table").html(dashboardTableHBS(getDashboardContextTable()));
     };
+
     function cbDashboard(start, end) {
       displayReportRange(start, end, renderDashboardTable);
+        $(".report-name-dashboard-table").click(function() {
+            // console.log($(this).attr("data-reportid"))
+            renderReportPage({ reportId: $(this).attr("data-reportid") });
+        });
     }
     registerDateRangePickerFunctions(cbDashboard);
     cbDashboard(state.startDate, state.endDate);
@@ -72,7 +77,7 @@ $(document).ready(function() {
         renderIndividualReportTable({ reportId });
       });
     } else {
-        $("#content").html(individualReportNoContentHBS({ mainTitle: reportsTypes[reportId].name }));
+      $("#content").html(individualReportNoContentHBS({ mainTitle: reportsTypes[reportId].name }));
     }
   };
 
@@ -81,6 +86,7 @@ $(document).ready(function() {
    */
   $("#dashboard-link").click(function() {
     renderDashboardPage();
+      $("#menu").slideUp(500);
   });
 
   $(".sub-menu-content li").click(function() {

@@ -33,7 +33,7 @@ const getDashboardContextTable = () => {
     return relevantOpenItemsByDates;
   };
   const headerTitles = [];
-  headerTitles[0] = { title: "Report Name" };
+  headerTitles[0] = { title: "<div class='align-table-text-left'>Report Name</div>" };
   state.relevantDatesGlobal.map(date => {
     headerTitles.push({ title: moment(date).format("MMM DD") });
   });
@@ -45,7 +45,7 @@ const getDashboardContextTable = () => {
     .map(reportId => {
       contentRows[reportId] = [];
       contentRows[reportId] = [
-        ...[{ value: `<div class="report-name-dashboard-table">${reportsTypes[reportId].name}</div>` }],
+        ...[{ value: `<div class='report-name-dashboard-table' data-reportid=${reportId}>${reportsTypes[reportId].name}</div>` }],
         ...getOpenItemsForAReportByDates({ reportId })
       ];
     });

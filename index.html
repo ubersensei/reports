@@ -9,7 +9,6 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 <body>
-
 <div id="page">
     <div id="nav">
         <img src="./assets/logo.svg" alt="Credit Suisse Logo">
@@ -91,7 +90,7 @@
 </script>
 <script id="dashboard-table-hbs" type="text/x-handlebars-template">
     {{#* inline "headerCell"}}
-        <th><div class="cell">{{title}}</div></th>
+        <th><div class="cell">{{{title}}}</div></th>
     {{/inline}}
     {{#* inline "bodyCell"}}
         <td><div class="cell">{{{value}}}</div></td>
@@ -100,17 +99,17 @@
         <thead>
         <tr>
             {{#each headerTitles}}
-                {{> headerCell}}
+            {{> headerCell}}
             {{/each}}
         </tr>
         </thead>
         <tbody>
             {{#each contentRows}}
-            <tr>
-                {{#each this}}
+                <tr>
+                    {{#each this}}
                     {{> bodyCell}}
-                {{/each}}
-            </tr>
+                    {{/each}}
+                </tr>
             {{/each}}
         </tbody>
     </table>
@@ -142,7 +141,7 @@
 </script>
 <script id="individual-report-table-hbs" type="text/x-handlebars-template">
     {{#* inline "headerCell"}}
-        <th><div class="cell">{{title}}</div></th>
+        <th><div class="cell">{{{title}}}</div></th>
     {{/inline}}
     {{#* inline "bodyCell"}}
         <td><div class="cell">{{{value}}}</div></td>
@@ -151,7 +150,7 @@
         <thead>
         <tr>
             {{#each headerTitles}}
-                {{> headerCell}}
+            {{> headerCell}}
             {{/each}}
         </tr>
         </thead>
@@ -165,6 +164,11 @@
             {{/each}}
         </tbody>
     </table>
+</script>
+<script id="completion-status-sort" type="text/x-handlebars-template">
+    <div class="sort-options-wrapper">
+
+    </div>
 </script>
 <script type="text/javascript" src="js/model.js"></script>
 <script type="text/javascript" src="js/controller.js"></script>

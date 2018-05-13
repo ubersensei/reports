@@ -31,6 +31,7 @@
 <body>
 <div id="controls-wrapper">
     <div class="button" id="openItemsCountsButton">Open Items Counts</div>
+    <div class="button" id="reportItems">Report Items</div>
     <div class="button" id="currentTask">Current Random Data</div>
 </div>
 <div id="data"></div>
@@ -45,7 +46,7 @@
         $('#openItemsCountsButton').click(function () {
             $('#data').html('const openItemsCounts = ' + JSON.stringify(generateOpenItemsCounts()));
         });
-        $('#currentTask').click(function () {
+        $('#reportItems').click(function () {
 
             $('#data').html('const reportItemsByReportId = ' + JSON.stringify(createReportItemsByReportId(55, 1)));
 
