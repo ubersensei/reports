@@ -166,10 +166,11 @@
     </table>
 </script>
 <script id="completion-status-filter" type="text/x-handlebars-template">
-    <div class="filter-options-wrapper" data-reportid={{reportID}} data-task={{task}}>
-        <div class="options-wrapper"><i class="material-icons">radio_button_unchecked</i>WIP</div>
-        <div class="options-wrapper"><i class="material-icons">radio_button_unchecked</i>Completed</div>
-        <div class="options-wrapper"><i class="material-icons">radio_button_unchecked</i>Both</div>
+    <div class="filter-options-wrapper">
+        <i class="material-icons close-filter-options">close</i>
+        <div class="options-wrapper" data-reportid="{{reportId}}" data-task="{{task}}" data-option="wip"><i class="material-icons">{{#if wip}}radio_button_checked{{else}}radio_button_unchecked{{/if}}</i>WIP</div>
+        <div class="options-wrapper" data-reportid="{{reportId}}" data-task="{{task}}" data-option="complete"><i class="material-icons">{{#if complete}}radio_button_checked{{else}}radio_button_unchecked{{/if}}</i>Complete</div>
+        <div class="options-wrapper" data-reportid="{{reportId}}" data-task="{{task}}" data-option="both"><i class="material-icons">{{#if both}}radio_button_checked{{else}}radio_button_unchecked{{/if}}</i>Both</div>
     </div>
 </script>
 <script type="text/javascript" src="js/model.js"></script>

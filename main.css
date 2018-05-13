@@ -108,7 +108,7 @@ blockquote:before,
 blockquote:after,
 q:before,
 q:after {
-  content: '';
+  content: "";
   content: none; }
 
 table {
@@ -165,12 +165,12 @@ input {
   border-radius: 0;
   font-size: 1.142857em;
   line-height: 1;
-  padding: 0.4em  2em 0.4em  0;
+  padding: 0.4em 2em 0.4em 0;
   border: none;
   border-bottom: 1px solid #cccccc; }
   input:focus {
     border-bottom: 1px solid #a8251b;
-    transition: border-bottom-color .15s ease-in; }
+    transition: border-bottom-color 0.15s ease-in; }
 
 #page {
   position: relative;
@@ -199,7 +199,7 @@ input {
     #header-band .login:hover {
       cursor: pointer;
       background-color: #a8251b;
-      transition: background .15s ease-in; }
+      transition: background 0.15s ease-in; }
 
 #nav {
   position: relative;
@@ -207,7 +207,8 @@ input {
   height: 5.1875em;
   padding: 1em 0;
   overflow: hidden; }
-  #nav img, #nav .wrapper {
+  #nav img,
+  #nav .wrapper {
     float: left;
     margin-right: 4em; }
   #nav .wrapper {
@@ -216,7 +217,8 @@ input {
     font-size: 0.875em;
     font-weight: 700;
     overflow: hidden; }
-    #nav .wrapper span, #nav .wrapper i {
+    #nav .wrapper span,
+    #nav .wrapper i {
       float: left; }
     #nav .wrapper i {
       font-size: 1.2em;
@@ -225,7 +227,7 @@ input {
     #nav .wrapper:hover {
       cursor: pointer;
       color: #757575;
-      transition: color .15s ease-in; }
+      transition: color 0.15s ease-in; }
 
 #menu {
   display: none;
@@ -269,7 +271,13 @@ input {
 #content {
   padding-top: 1.7em; }
 
-#header-band, #nav, #menu, #console, #dashboard-table, #individual-report-table, #no-content-explanation {
+#header-band,
+#nav,
+#menu,
+#console,
+#dashboard-table,
+#individual-report-table,
+#no-content-explanation {
   padding-left: 7em; }
 
 #main-title {
@@ -316,18 +324,23 @@ input {
     color: #757575;
     font-size: 1.8em; }
 
-#dashboard-table, #individual-report-table {
+#dashboard-table,
+#individual-report-table {
   display: inline-block;
   padding-right: 7em; }
-  #dashboard-table th, #individual-report-table th {
+  #dashboard-table th,
+  #individual-report-table th {
     font-weight: 700;
     max-width: 25em; }
-  #dashboard-table td, #individual-report-table td {
+  #dashboard-table td,
+  #individual-report-table td {
     text-align: center;
     max-width: 25em; }
-  #dashboard-table .report-name-dashboard-table, #individual-report-table .report-name-dashboard-table {
+  #dashboard-table .report-name-dashboard-table,
+  #individual-report-table .report-name-dashboard-table {
     text-align: left; }
-    #dashboard-table .report-name-dashboard-table:hover, #individual-report-table .report-name-dashboard-table:hover {
+    #dashboard-table .report-name-dashboard-table:hover,
+    #individual-report-table .report-name-dashboard-table:hover {
       cursor: pointer;
       color: #a8251b;
       text-decoration: underline; }
@@ -340,12 +353,14 @@ table {
 tr:nth-child(even) {
   background-color: #f5f5f5; }
 
-td, th {
+td,
+th {
   position: relative;
   border: 1px solid #cccccc;
   margin: 0;
   padding: 0; }
-  td .cell, th .cell {
+  td .cell,
+  th .cell {
     margin: 0;
     white-space: nowrap;
     overflow: hidden;
@@ -358,16 +373,47 @@ thead {
 
 .task-header {
   position: relative;
-  color: #a8251b;
+  color: #004c97;
   text-align: left;
   min-width: 10em; }
-  .task-header i {
+  .task-header .filter {
+    margin-top: 0.3em;
     float: right;
-    color: #757575;
-    margin-top: 0.3em; }
-    .task-header i:hover {
+    color: #757575; }
+    .task-header .filter:hover {
       cursor: pointer;
       color: #000; }
+
+.filter-options-wrapper {
+  position: absolute;
+  top: -12.5em;
+  left: 0;
+  width: 10em;
+  background-color: #ebebeb;
+  padding: 3em 0 1em 0;
+  border-top: 4px solid #da291c; }
+  .filter-options-wrapper .close-filter-options {
+    position: absolute;
+    top: 0.5em;
+    right: 0.5em; }
+    .filter-options-wrapper .close-filter-options:hover {
+      color: #757575;
+      cursor: pointer; }
+
+.options-wrapper {
+  font-weight: normal;
+  position: relative;
+  overflow: hidden;
+  line-height: 2.5em;
+  text-align: left;
+  padding: 0 1em; }
+  .options-wrapper i {
+    position: relative;
+    top: 0.2em;
+    margin-right: 0.1em; }
+  .options-wrapper:hover {
+    cursor: pointer;
+    background-color: #f5f5f5; }
 
 .align-table-text-left {
   text-align: left; }
@@ -376,11 +422,13 @@ thead {
   font-size: 0.8em; }
   .status > div:first-of-type {
     margin-right: 1em; }
-  .status .active, .status .inactive {
+  .status .active,
+  .status .inactive {
     display: inline-block; }
-  .status .active {
-    color: #004c97;
-    font-weight: 700; }
+  .status .active i {
+    color: #76c000; }
+  .status .active .wip {
+    color: #a8251b; }
   .status .inactive {
     color: #cccccc; }
     .status .inactive:hover {
@@ -388,7 +436,12 @@ thead {
       color: #757575; }
   .status i {
     position: relative;
-    top: 0.2em;
+    top: 0.25em;
     margin-right: 0.08em; }
+
+.rounded-corners {
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  border-radius: 5px; }
 
 /*# sourceMappingURL=main.css.map */

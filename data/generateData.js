@@ -63,12 +63,12 @@ const createReportItemsByReportId = (n_items, reportId) => {
   const activeComplete =
     "&lt;div class='active'&gt;&lt;i class='material-icons'&gt;radio_button_checked&lt;/i&gt;&lt;span&gt;Complete&lt;/span&gt;&lt;/div&gt;";
   const activeWIP =
-    "&lt;div class='active'&gt;&lt;i class='material-icons'&gt;radio_button_unchecked&lt;/i&gt;&lt;span&gt;WIP&lt;/span&gt;&lt;/div&gt;";
-  const inactiveComplete =
-    "&lt;div class='inactive'&gt;&lt;i class='material-icons'&gt;radio_button_checked&lt;/i&gt;&lt;span&gt;Complete&lt;/span&gt;&lt;/div&gt;";
-  const inactiveWIP =
-    "&lt;div class='inactive'&gt;&lt;i class='material-icons'&gt;radio_button_unchecked&lt;/i&gt;&lt;span&gt;WIP&lt;/span&gt;&lt;/div&gt;";
-  const statusCompleteStub = `&lt;div class='status'&gt;${inactiveWIP + activeComplete}&lt;/div&gt;`;
+      "&lt;div class='active'&gt;&lt;i class='material-icons wip'&gt;radio_button_checked&lt;/i&gt;&lt;span&gt;WIP&lt;/span&gt;&lt;/div&gt;";
+    const inactiveComplete =
+        "&lt;div class='inactive'&gt;&lt;i class='material-icons'&gt;radio_button_unchecked&lt;/i&gt;&lt;span&gt;Complete&lt;/span&gt;&lt;/div&gt;";
+    const inactiveWIP =
+        "&lt;div class='inactive'&gt;&lt;i class='material-icons'&gt;radio_button_unchecked&lt;/i&gt;&lt;span&gt;WIP&lt;/span&gt;&lt;/div&gt;";
+    const statusCompleteStub = `&lt;div class='status'&gt;${inactiveWIP + activeComplete}&lt;/div&gt;`;
   const statusWIPStub = `&lt;div class='status'&gt;${activeWIP + inactiveComplete}&lt;/div&gt;`;
   const oldestAgeOfTheReportInDays = 150;
   while (n < n_items) {
@@ -92,8 +92,7 @@ const createReportItemsByReportId = (n_items, reportId) => {
       reportBasedTasks[reportId].map(task => {
         //  ensure previous task is completed before next task
         lastRandomInt = getRandomInt(0, 2 * lastRandomInt);
-        // return (item[`&lt;div class='task-header'&gt;&lt;i class='material-icons'&gt;filter_list&lt;/i&gt;&lt;p&gt;${task}&lt;/p&gt;&lt;/div&gt;`] =
-        return (item[`&lt;div class='task-header'&gt;&lt;i class='material-icons' data-reportid=${reportId} data-task=${task}&gt;filter_list&lt;/i&gt;&lt;p&gt;${task}&lt;/p&gt;&lt;/div&gt;`] =
+        return (item[`&lt;div class='task-header'&gt;&lt;i class='material-icons filter' data-reportid=${reportId} data-task=${task}&gt;filter_list&lt;/i&gt;&lt;p&gt;${task}&lt;/p&gt;&lt;/div&gt;`] =
           lastRandomInt === 0 ? statusWIPStub : statusCompleteStub);
       });
       item[`&lt;div class='task-header'&gt;Commentary&lt;/div&gt;`] = "No Comments";
