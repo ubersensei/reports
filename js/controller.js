@@ -41,9 +41,7 @@ const createRelevantDates = (start, end) => {
 const getDashboardContextTable = () => {
     const getOpenItemsForAReportByDates = ({ reportId }) => {
         const relevantOpenItemsByDates = [];
-        state.relevantDatesGlobal.map(date =>
-            relevantOpenItemsByDates.push({ value: openItemsCounts[reportId][date] })
-        );
+        state.relevantDatesGlobal.map(date => relevantOpenItemsByDates.push({ value: openItemsCounts[reportId][date] }));
         return relevantOpenItemsByDates;
     };
     const headerTitles = [];
@@ -53,20 +51,11 @@ const getDashboardContextTable = () => {
     });
     const contentRows = {};
     Object.keys(reportsTypes)
-        .filter(
-            reportId =>
-                reportsTypes[reportId].name.toUpperCase().indexOf(state.searchStringDashboard.toUpperCase()) !== -1
-        )
+        .filter(reportId => reportsTypes[reportId].name.toUpperCase().indexOf(state.searchStringDashboard.toUpperCase()) !== -1)
         .map(reportId => {
             contentRows[reportId] = [];
             contentRows[reportId] = [
-                ...[
-                    {
-                        value: `<div class='report-name-dashboard-table' data-reportid=${reportId}>${
-                            reportsTypes[reportId].name
-                        }</div>`
-                    }
-                ],
+                ...[{ value: `<div class='report-name-dashboard-table' data-reportid=${reportId}>${reportsTypes[reportId].name}</div>` }],
                 ...getOpenItemsForAReportByDates({ reportId })
             ];
         });

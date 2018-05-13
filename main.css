@@ -375,14 +375,18 @@ thead {
   position: relative;
   color: #004c97;
   text-align: left;
-  min-width: 10em; }
+  overflow: hidden; }
   .task-header .filter {
     margin-top: 0.3em;
     float: right;
+    overflow: hidden;
+    margin-left: 0.5em;
     color: #757575; }
     .task-header .filter:hover {
       cursor: pointer;
       color: #000; }
+  .task-header p {
+    overflow: hidden; }
 
 .filter-options-wrapper {
   position: absolute;

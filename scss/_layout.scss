@@ -235,16 +235,21 @@ thead {
     position: relative;
     color: $darkBlue;
     text-align: left;
-    min-width: 10em;
+  overflow: hidden;
     .filter {
       margin-top: 0.3em;
       float: right;
+      overflow: hidden;
+      margin-left: 0.5em;
         color: $blackTint2;
         &:hover {
             cursor: pointer;
             color: $black;
         }
     }
+  p {
+    overflow: hidden;
+  };
 }
 
 .filter-options-wrapper {
@@ -289,6 +294,7 @@ thead {
 
 .status {
     font-size: 0.8em;
+  //text-align: left;
     > div {
         &:first-of-type {
             margin-right: 1em;

@@ -63,9 +63,7 @@ $(document).ready(function() {
         if (typeof reportItems !== "undefined" && Object.keys(reportItems).length) {
             $("#content").html(individualReportContentHBS({ mainTitle: reportsTypes[reportId].name }));
             const renderIndividualReportTable = () => {
-                $("#individual-report-table").html(
-                    individualReportTableHBS(getIndividualReportContextTable({ reportId }))
-                );
+                $("#individual-report-table").html(individualReportTableHBS(getIndividualReportContextTable({ reportId })));
                 $(".task-header i").click(function() {
                     const $this = $(this);
                     const task = $(this).attr("data-task");
