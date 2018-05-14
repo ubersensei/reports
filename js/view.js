@@ -68,7 +68,7 @@ $(document).ready(function() {
                 $("#individual-report-table").html(individualReportTableHBS(getIndividualReportContextTable({ reportId })));
                 $(".task-header i").click(function() {
                     const $this = $(this);
-                    const task = $(this).attr("data-task");
+                    const task = $(this).attr("data-task").split(" ")[0];
                     const reportId = $(this).attr("data-reportid");
                     const contextFilter = {
                         reportId,

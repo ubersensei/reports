@@ -10,3 +10,5 @@ const completionStatusFilterHBS = Handlebars.compile($("#completion-status-filte
 const commentaryWithinTableHBS = Handlebars.compile($("#commmentary-within-table-hbs").html());
 const commentaryDialogHBS = Handlebars.compile($("#commentary-dialog-hbs").html());
 
+const completionStatusHBS = Handlebars.compile($("#completion-status-hbs").html());
+

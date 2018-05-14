@@ -180,6 +180,16 @@
         </tbody>
     </table>
 </script>
+<script id="completion-status-hbs" type="text/x-handlebars-template">
+    <div class="status">
+        <div class="{{#if completed}}inactive{{else}}active{{/if}}">
+            <i class="{{#if completed}}material-icons{{else}}material-icons wip{{/if}}">{{#if completed}}radio_button_unchecked{{else}}radio_button_checked{{/if}}</i><span>WIP</span>
+        </div>
+        <div class="{{#if completed}}active{{else}}inactive{{/if}}">
+            <i class="material-icons">{{#if completed}}radio_button_checked{{else}}radio_button_unchecked{{/if}}</i><span>Complete</span>
+        </div>
+    </div>
+</script>
 <script id="completion-status-filter-hbs" type="text/x-handlebars-template">
     <div class="filter-options-wrapper">
         <i class="material-icons close">close</i>
