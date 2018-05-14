@@ -1,5 +1,6 @@
 $(document).ready(function() {
     const $content = $("#content");
+    const $body = $("body");
     const registerDateRangePickerFunctions = cb => {
         const $reportrange = $("#reportrange");
         $reportrange.daterangepicker(
@@ -98,6 +99,30 @@ $(document).ready(function() {
                         });
                     }
                 });
+                $(".commentary-wrapper").click(function() {
+                    const reportId = $(this).attr("data-reportid");
+                    const itemId = $(this).attr("data-itemid");
+                    const comments = state.reportsItemsComments[reportId][itemId];
+                    $(this)
+                        .parents(".cell")
+                        .css("background", "#ccc");
+                    $body.append(commentaryDialogHBS({ comments, reportId, itemId }));
+                    $("#commentary-textarea").keypress(function(e) {
+                        if (e.which === 13) {
+                            const reportId = $(this).attr("data-reportid");
+                            const itemId = $(this).attr("data-itemid");
+                            state.reportsItemsComments[reportId][itemId].push({
+                                name: "Guest",
+                                date: moment().format("MMM D, YYYY"),
+                                content: $(this).val()
+                            });
+                            renderIndividualReportTable({ reportId });
+                            $body.find("#modal-background").remove();
+                            $body.find(".cell").css("background", "none");
+                            return false;
+                        }
+                    });
+                });
             };
             function cbIndividualReport(start, end) {
                 displayReportRange(start, end, renderIndividualReportTable);
@@ -114,7 +139,10 @@ $(document).ready(function() {
         }
     };
 
-
+    $body.on("click", "#commentary-dialog .close", function() {
+        $body.find(".cell").css("background", "none");
+        $body.find("#modal-background").remove();
+    });
 
     /**
      * Render the pages

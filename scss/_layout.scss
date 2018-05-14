@@ -235,57 +235,57 @@ thead {
     position: relative;
     color: $darkBlue;
     text-align: left;
-  overflow: hidden;
+    overflow: hidden;
     .filter {
-      margin-top: 0.3em;
-      float: right;
-      overflow: hidden;
-      margin-left: 0.5em;
+        margin-top: 0.3em;
+        float: right;
+        overflow: hidden;
+        margin-left: 0.5em;
         color: $blackTint2;
         &:hover {
             cursor: pointer;
             color: $black;
         }
     }
-  p {
-    overflow: hidden;
-  };
+    p {
+        overflow: hidden;
+    }
 }
 
 .filter-options-wrapper {
-  position: absolute;
-  top: -12.5em;
-  left: 0;
-  width: 10em;
-  background-color: $blackTint6;
-  padding: 3em 0 1em 0;
-  border-top: 4px solid $red;
-  .close-filter-options {
     position: absolute;
-    top: 0.5em;
-    right: 0.5em;
-    &:hover {
-      color: $blackTint2;
-      cursor: pointer;
+    top: -12.5em;
+    left: 0;
+    width: 10em;
+    background-color: $blackTint6;
+    padding: 3em 0 1em 0;
+    border-top: 4px solid $red;
+    .close {
+        position: absolute;
+        top: 0.5em;
+        right: 0.5em;
+        &:hover {
+            color: $blackTint2;
+            cursor: pointer;
+        }
     }
-  }
 }
 .options-wrapper {
-  font-weight: normal;
-  position: relative;
-  overflow: hidden;
-  line-height: 2.5em;
-  text-align: left;
-  padding: 0 1em;
-  i {
+    font-weight: normal;
     position: relative;
-    top: 0.2em;
-    margin-right: 0.1em;
-  }
-  &:hover {
-    cursor: pointer;
-    background-color: $blackTint7;
-  }
+    overflow: hidden;
+    line-height: 2.5em;
+    text-align: left;
+    padding: 0 1em;
+    i {
+        position: relative;
+        top: 0.2em;
+        margin-right: 0.1em;
+    }
+    &:hover {
+        cursor: pointer;
+        background-color: $blackTint7;
+    }
 }
 
 .align-table-text-left {
@@ -316,6 +316,7 @@ thead {
         &:hover {
             cursor: pointer;
             color: $blackTint2;
+            transition: color 0.15s ease-in;
         }
     }
     i {
@@ -325,8 +326,98 @@ thead {
     }
 }
 
-.rounded-corners {
-  -moz-border-radius: 5px;
-  -webkit-border-radius: 5px;
-  border-radius: 5px;
+.commentary-wrapper {
+    position: relative;
+    overflow: hidden;
+    &:hover {
+        color: $darkRed;
+        cursor: pointer;
+    }
+    i {
+        float: right;
+        overflow: hidden;
+        margin: 0.3em 0 0 0.5em;
+        color: $blackTint2;
+        &:hover {
+            cursor: pointer;
+            color: $black;
+            transition: color 0.15s ease-in;
+        }
+    }
+    .content {
+      text-align: left;
+        max-width: 15em;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+    }
+}
+
+#modal-background {
+    position: fixed; /* Stay in place */
+    z-index: 1000; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0, 0, 0); /* Fallback color */
+    background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+}
+
+#commentary-dialog {
+    height: 35em;
+    width: 25em;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: $blackTint6;
+    border-top: 4px solid $red;
+    .contents-wrapper {
+    }
+    .close {
+        position: absolute;
+        top: 0.5em;
+        right: 0.5em;
+        &:hover {
+            color: $blackTint2;
+            cursor: pointer;
+        }
+    }
+    #commentary-header {
+      margin: 0 1em;
+      padding: 2em 0 1em 0;
+      border-bottom: 1px solid $blackTint3;
+      font-weight: 700;
+        .title {
+            font-size: 1.125em;
+        }
+    }
+  ul {
+    padding: 0 1em 1em 1em;
+    overflow-y: auto;
+    height: 25.875em;
+span  {
+  display: inline-block;
+}
+  }
+  .date, .colon, .name  {
+    font-size: 0.8em;
+    line-height: 1;
+  }
+  .name {
+    font-weight: 700;
+  }
+
+  li {
+    margin-top: 1.5em;
+  }
+  .input-wrapper {
+    border-top: 1px solid $blackTint3;
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    left: 0;
+  }
 }

@@ -60,6 +60,7 @@ const createReportItemsByReportId = (n_items, reportId) => {
     let item, lastRandomInt;
     const reportItems = {};
     const itemsTaskStatus = {}; // itemsTaskStatus[itemId][task] = true/false
+    const itemsComments = {};
     const uniqueIds = [];
     const activeComplete =
         "&lt;div class='active'&gt;&lt;i class='material-icons'&gt;radio_button_checked&lt;/i&gt;&lt;span&gt;Complete&lt;/span&gt;&lt;/div&gt;";
@@ -85,12 +86,14 @@ const createReportItemsByReportId = (n_items, reportId) => {
                 .join("")
                 .toUpperCase() +
             "0";
+        itemsTaskStatus[uniqueId] = {};
+        itemsComments[uniqueId] = [];
+
         if (uniqueIds.indexOf(uniqueId) === -1) {
             item["Primary Code"] = uniqueId;
             item["Unique ID"] = uniqueId;
             item["Start Date"] = moment().subtract(getRandomInt(1, oldestAgeOfTheReportInDays), "days");
             lastRandomInt = 1;
-            itemsTaskStatus[uniqueId] = {};
             reportBasedTasks[reportId].map(task => {
                 //  ensure previous task is completed before next task
                 lastRandomInt = getRandomInt(0, 2 * lastRandomInt);
@@ -102,6 +105,11 @@ const createReportItemsByReportId = (n_items, reportId) => {
             });
             item[`&lt;div class='task-header'&gt;Commentary&lt;/div&gt;`] = "No Comments";
             reportItems[uniqueId] = item;
+            itemsComments[uniqueId].push({
+                name: "Bot",
+                date: item["Start Date"].format("MMM D, YYYY"),
+                content: "This item was added to the control report."
+            });
             n++;
         }
     }
@@ -110,5 +118,9 @@ const createReportItemsByReportId = (n_items, reportId) => {
     // reportsItemsStatus[reportId][ItemId][task] = true/false
     const reportsItemsTasksStatus = {};
     reportsItemsTasksStatus[reportId] = itemsTaskStatus;
-    return { reportItemsByReportId, reportsItemsTasksStatus };
+
+    const reportsItemsComments = {};
+    reportsItemsComments[reportId] = itemsComments;
+
+    return { reportItemsByReportId, reportsItemsTasksStatus, reportsItemsComments };
 };

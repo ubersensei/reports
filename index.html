@@ -165,17 +165,46 @@
         </tbody>
     </table>
 </script>
-<script id="completion-status-filter" type="text/x-handlebars-template">
+<script id="completion-status-filter-hbs" type="text/x-handlebars-template">
     <div class="filter-options-wrapper">
-        <i class="material-icons close-filter-options">close</i>
+        <i class="material-icons close">close</i>
         <div class="options-wrapper" data-reportid="{{reportId}}" data-task="{{task}}" data-option="wip"><i class="material-icons">{{#if wip}}radio_button_checked{{else}}radio_button_unchecked{{/if}}</i>WIP</div>
         <div class="options-wrapper" data-reportid="{{reportId}}" data-task="{{task}}" data-option="complete"><i class="material-icons">{{#if complete}}radio_button_checked{{else}}radio_button_unchecked{{/if}}</i>Complete</div>
         <div class="options-wrapper" data-reportid="{{reportId}}" data-task="{{task}}" data-option="both"><i class="material-icons">{{#if both}}radio_button_checked{{else}}radio_button_unchecked{{/if}}</i>Both</div>
     </div>
 </script>
+<script id="commmentary-within-table-hbs" type="text/x-handlebars-template">
+    <div class='commentary-wrapper' data-reportid="{{reportId}}" data-itemid="{{itemId}}">
+        <i class="material-icons">add_circle_outline</i>
+        <div class='content'>{{{content}}}</div>
+    </div>
+</script>
+<script id="commentary-dialog-hbs" type="text/x-handlebars-template">
+    {{#* inline "comment"}}
+        <li><span class="date">{{date}}</span>&nbsp;&middot;&nbsp;<span class="name">{{name}}</span><span class="colon">:</span><div class="content">{{content}}</div></li>
+    {{/inline}}
+    <div id="modal-background">
+        <div id="commentary-dialog">
+            <i class="material-icons close">close</i>
+            <div class="contents-wrapper">
+                <div id="commentary-header">
+                    <div class="title">Commentary</div>
+                </div>
+                <ul>
+                    {{#each comments}}
+                        {{> comment}}
+                    {{/each}}
+                </ul>
+            </div>
+            <div class="input-wrapper" >
+                    <textarea name="commentary" id="commentary-textarea" placeholder="Add comment" data-reportid="{{reportId}}" data-itemid="{{itemId}}"></textarea>
+            </div>
+        </div>
+    </div>
+</script>
+<script type="text/javascript" src="stubsHBS/stubsHBS.js"></script>
 <script type="text/javascript" src="js/model.js"></script>
 <script type="text/javascript" src="js/controller.js"></script>
-<script type="text/javascript" src="stubsHBS/stubsHBS.js"></script>
 <script type="text/javascript" src="js/view.js"></script>
 <script type="text/javascript" src="js/ui.js"></script>
 </body>

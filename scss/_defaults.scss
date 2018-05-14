@@ -75,3 +75,13 @@ input {
         transition: border-bottom-color 0.15s ease-in;
     }
 }
+textarea {
+  -webkit-appearance: none;
+  border-radius: 0;
+  font-size: 1em;
+  line-height: 1;
+  padding: 0.5em 1em;
+  border: none;
+  height: 4em;
+  resize: none;
+}

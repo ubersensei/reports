@@ -34,6 +34,7 @@
     <div class="button" id="createReportItems">Create Report Items</div>
     <div class="button" id="showReportItems">Show Report Items</div>
     <div class="button" id="showTaskStatus">Show Task Status</div>
+    <div class="button" id="showComments">Show Comments</div>
 </div>
 <div id="data"></div>
 <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
@@ -58,6 +59,9 @@
         });
         $('#showTaskStatus').click(function () {
             $('#data').html('reportsItemsTasksStatus : ' + JSON.stringify(reportItems.reportsItemsTasksStatus));
+        });
+        $('#showComments').click(function () {
+            $('#data').html('reportsItemsComments : ' + JSON.stringify(reportItems.reportsItemsComments));
         });
     });
 </script>
