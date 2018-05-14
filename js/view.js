@@ -37,7 +37,7 @@ $(document).ready(function() {
 
     const renderDashboardPage = () => {
         resetState();
-        $content.html(dashboardContentHBS({ mainTitle: "Dashboard Items" }));
+        $content.html(dashboardContentHBS({ mainTitle: "Dashboard - Open Items" }));
         const renderDashboardTable = () => {
             $("#dashboard-table").html(dashboardTableHBS(getDashboardContextTable()));
         };
@@ -75,7 +75,7 @@ $(document).ready(function() {
                         completed: false,
                         both: false
                     };
-                    contextFilter[state.reportState[reportId][task]] = true;
+                    contextFilter[state.reportTaskFilterPreferences[reportId][task]] = true;
                     if ($this.parents("th").find(".filter-options-wrapper").length) {
                         $this
                             .parents("th")
@@ -93,7 +93,7 @@ $(document).ready(function() {
                             const $this = $(this);
                             const task = $this.attr("data-task");
                             const reportId = $this.attr("data-reportid");
-                            state.reportState[reportId][task] = $this.attr("data-option");
+                            state.reportTaskFilterPreferences[reportId][task] = $this.attr("data-option");
                             renderIndividualReportTable({ reportId });
                         });
                     }
@@ -113,6 +113,8 @@ $(document).ready(function() {
             $("#content").html(individualReportNoContentHBS({ mainTitle: reportsTypes[reportId].name }));
         }
     };
+
+
 
     /**
      * Render the pages

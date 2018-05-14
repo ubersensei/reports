@@ -31,8 +31,9 @@
 <body>
 <div id="controls-wrapper">
     <div class="button" id="openItemsCountsButton">Open Items Counts</div>
-    <div class="button" id="reportItems">Report Items</div>
-    <div class="button" id="currentTask">Current Random Data</div>
+    <div class="button" id="createReportItems">Create Report Items</div>
+    <div class="button" id="showReportItems">Show Report Items</div>
+    <div class="button" id="showTaskStatus">Show Task Status</div>
 </div>
 <div id="data"></div>
 <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
@@ -43,13 +44,20 @@
 
 <script type="text/javascript">
     $(document).ready(function() {
+        let reportItems;
+
         $('#openItemsCountsButton').click(function () {
             $('#data').html('const openItemsCounts = ' + JSON.stringify(generateOpenItemsCounts()));
         });
-        $('#reportItems').click(function () {
-
-            $('#data').html('const reportItemsByReportId = ' + JSON.stringify(createReportItemsByReportId(100, 1)));
-
+        $('#createReportItems').click(function () {
+            reportItems = createReportItemsByReportId(100, 1);
+            $('#data').html('created reportItems!');
+        });
+        $('#showReportItems').click(function () {
+            $('#data').html('const reportItemsByReportId = ' + JSON.stringify(reportItems.reportItemsByReportId) + ';');
+        });
+        $('#showTaskStatus').click(function () {
+            $('#data').html('reportsItemsTasksStatus : ' + JSON.stringify(reportItems.reportsItemsTasksStatus));
         });
     });
 </script>

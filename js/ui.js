@@ -6,4 +6,8 @@ $(document).ready(function() {
     $("#menu-header i").click(function() {
         $("#menu").slideUp(500);
     });
+
+    $(".cancelBtn.btn.btn-default").click(function() {
+        $("#report-range-backdrop").slideUp(100);
+    });
 });

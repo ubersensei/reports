@@ -164,7 +164,7 @@
 #report-range-backdrop {
     display: none;
     background-color: $blackTint6;
-    height: 21em;
+    height: 18em;
 }
 
 #searchWrapper {
@@ -294,7 +294,6 @@ thead {
 
 .status {
     font-size: 0.8em;
-  //text-align: left;
     > div {
         &:first-of-type {
             margin-right: 1em;
