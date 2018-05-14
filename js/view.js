@@ -1,6 +1,7 @@
 $(document).ready(function() {
     const $content = $("#content");
     const $body = $("body");
+
     const registerDateRangePickerFunctions = cb => {
         const $reportrange = $("#reportrange");
         $reportrange.daterangepicker(
@@ -107,6 +108,7 @@ $(document).ready(function() {
                         .parents(".cell")
                         .css("background", "#ccc");
                     $body.append(commentaryDialogHBS({ comments, reportId, itemId }));
+                    $('#commentary-textarea').focus();
                     $("#commentary-textarea").keypress(function(e) {
                         if (e.which === 13) {
                             const reportId = $(this).attr("data-reportid");
@@ -124,15 +126,23 @@ $(document).ready(function() {
                     });
                 });
 
-                if (state.reportTaskFilterPreferences["1"].Maker !== 'both') {
-                    $(".task-header i").eq(0).css('color', '#a8251b');
+                if (state.reportTaskFilterPreferences["1"].Maker !== "both") {
+                    $(".task-header i")
+                        .eq(0)
+                        .css("color", "#a8251b");
                 } else {
-                    $(".task-header i").eq(0).css('color', '#757575');
+                    $(".task-header i")
+                        .eq(0)
+                        .css("color", "#757575");
                 }
-                if (state.reportTaskFilterPreferences["1"].Checker !== 'both') {
-                    $(".task-header i").eq(1).css('color', '#a8251b');
+                if (state.reportTaskFilterPreferences["1"].Checker !== "both") {
+                    $(".task-header i")
+                        .eq(1)
+                        .css("color", "#a8251b");
                 } else {
-                    $(".task-header i").eq(1).css('color', '#757575');
+                    $(".task-header i")
+                        .eq(1)
+                        .css("color", "#757575");
                 }
             };
             function cbIndividualReport(start, end) {
@@ -153,7 +163,13 @@ $(document).ready(function() {
     $body.on("click", "#commentary-dialog .close", function() {
         $body.find(".cell").css("background", "none");
         $body.find("#modal-background").remove();
+    }).on("click", "#login-names li", function() {
+        const user = $(this).attr("data-user");
+        state.loggedInUser = user;
+        $('#loggedin-user').html(user);
+        $("#login-area").slideUp(500);
     });
+
     /**
      * Render the pages
      */

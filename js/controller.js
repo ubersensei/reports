@@ -1,5 +1,5 @@
 const state = {
-    loggedInUser: null,
+    loggedInUser: "USER LOGIN",
     searchStringDashboard: "",
     searchStringIndividualReport: "",
     relevantDatesGlobal: [],
@@ -106,7 +106,7 @@ const getIndividualReportContextTable = ({ reportId }) => {
                         return { value: moment(value).format("MMM DD, YYYY") };
                     case indexOfCommentary:
                         const itemComments = state.reportsItemsComments[reportId][itemId];
-                        const content = itemComments[itemComments.length - 1].content;
+                        const content = `#${itemComments.length}. ${itemComments[itemComments.length - 1].content}`;
                         return { value: commentaryWithinTableHBS({ reportId, itemId, content }) };
                     default:
                         return { value };

@@ -184,14 +184,11 @@ textarea {
 
 #page {
   position: relative;
-  padding: 1.75em 0 5em 0;
+  padding-bottom: 5em;
   background-color: white; }
 
 #header-band {
-  position: fixed;
-  top: 0;
-  right: 0;
-  left: 0;
+  position: relative;
   height: 1.75em;
   background-color: #272d34;
   color: white; }
@@ -207,24 +204,50 @@ textarea {
   #header-band #login-button {
     position: absolute;
     top: 0;
-    left: 32.9em;
-    min-width: 14em;
+    left: 22.6em;
+    min-width: 11.3em;
     background-color: #da291c;
-    height: 2.8em;
+    height: 1.94545em;
     padding: 0 2em; }
     #header-band #login-button:hover {
       cursor: pointer;
       background-color: #a8251b;
       transition: background 0.15s ease-in; }
-  #header-band #login-names {
-    display: none;
-    position: absolute;
-    top: 1.925em;
-    left: 0;
-    width: 14em;
-    font-size: 1.454545em;
-    color: #000;
-    background-color: #f5f5f5; }
+
+#login-area {
+  display: none;
+  height: 21em;
+  position: relative;
+  background-color: #ebebeb;
+  width: 100%; }
+
+#login-names {
+  position: absolute;
+  left: 22.6em;
+  width: 11.3em;
+  overflow: hidden;
+  color: #000;
+  background-color: #f5f5f5; }
+  #login-names ul,
+  #login-names li {
+    width: 14em; }
+  #login-names ul {
+    padding: 1em 0;
+    width: 100%; }
+  #login-names li {
+    width: 100%;
+    font-size: 0.6875em;
+    line-height: 3.545454;
+    letter-spacing: 0.02em;
+    padding: 0 2.909090em; }
+    #login-names li:hover {
+      background-color: #dadada;
+      cursor: pointer; }
+    #login-names li i {
+      font-size: 1.8em;
+      position: relative;
+      top: 0.25em;
+      margin-right: 0.6em; }
 
 #nav {
   position: relative;

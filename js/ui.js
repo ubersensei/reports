@@ -10,4 +10,8 @@ $(document).ready(function() {
     $(".cancelBtn.btn.btn-default").click(function() {
         $("#report-range-backdrop").slideUp(100);
     });
+
+    $("#login-button").click(function() {
+        $("#login-area").slideToggle(500);
+    });
 });

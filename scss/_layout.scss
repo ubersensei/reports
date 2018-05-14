@@ -1,14 +1,11 @@
 #page {
     position: relative;
-    padding: 1.75em 0 5em 0;
+    padding-bottom: 5em;
     background-color: white;
 }
 
 #header-band {
-    position: fixed;
-    top: 0;
-    right: 0;
-    left: 0;
+    position: relative;
     height: 1.75em;
     background-color: $darkBlack;
     color: white;
@@ -26,10 +23,10 @@
     #login-button {
         position: absolute;
         top: 0;
-        left: 32.9em;
-        min-width: 14em;
+        left: 22.6em;
+        min-width: 11.3em;
         background-color: $red;
-        height: 2.8em;
+        height: 1.94545em;
         padding: 0 2em;
         &:hover {
             cursor: pointer;
@@ -37,16 +34,46 @@
             transition: background 0.15s ease-in;
         }
     }
-  #login-names {
+}
+#login-area {
     display: none;
+    height: 21em;
+    position: relative;
+    background-color: $blackTint6;
+    width: 100%;
+}
+#login-names {
     position: absolute;
-    top: 1.925em;
-    left: 0;
-    width: 14em;
-    font-size: 1.454545em;
+    left: 22.6em;
+    width: 11.3em;
+    overflow: hidden;
     color: $black;
     background-color: $blackTint7;
+    ul,
+    li {
+        width: 14em;
+    }
+  ul {
+    padding: 1em 0;
+    width: 100%;
   }
+  li {
+    width: 100%;
+    font-size: 0.6875em;
+    line-height: 3.545454;
+    letter-spacing: 0.02em;
+    padding: 0 2.909090em;
+    &:hover {
+      background-color: $blackTint5;
+      cursor: pointer;
+    }
+    i {
+      font-size: 1.8em;
+      position: relative;
+      top: 0.25em;
+      margin-right: 0.6em;
+    }
+  };
 }
 #nav {
     position: relative;
