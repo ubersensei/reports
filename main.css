@@ -196,7 +196,6 @@ textarea {
   background-color: #272d34;
   color: white; }
   #header-band .header-text {
-    position: relative;
     font-size: 0.6875em;
     line-height: 2.545454;
     letter-spacing: 0.02em; }
@@ -205,17 +204,27 @@ textarea {
       position: relative;
       top: 0.25em;
       margin-right: 0.6em; }
-  #header-band .login {
+  #header-band #login-button {
     position: absolute;
     top: 0;
     left: 32.9em;
+    min-width: 14em;
     background-color: #da291c;
     height: 2.8em;
     padding: 0 2em; }
-    #header-band .login:hover {
+    #header-band #login-button:hover {
       cursor: pointer;
       background-color: #a8251b;
       transition: background 0.15s ease-in; }
+  #header-band #login-names {
+    display: none;
+    position: absolute;
+    top: 1.925em;
+    left: 0;
+    width: 14em;
+    font-size: 1.454545em;
+    color: #000;
+    background-color: #f5f5f5; }
 
 #nav {
   position: relative;
@@ -529,7 +538,9 @@ thead {
     height: 25.875em; }
     #commentary-dialog ul span {
       display: inline-block; }
-  #commentary-dialog .date, #commentary-dialog .colon, #commentary-dialog .name {
+  #commentary-dialog .date,
+  #commentary-dialog .colon,
+  #commentary-dialog .name {
     font-size: 0.8em;
     line-height: 1; }
   #commentary-dialog .name {

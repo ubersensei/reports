@@ -12,25 +12,22 @@
     height: 1.75em;
     background-color: $darkBlack;
     color: white;
-
     .header-text {
-      position: relative;
         font-size: 0.6875em;
         line-height: 2.545454;
         letter-spacing: 0.02em;
-      i {
-
-        font-size: 1.8em;
-        position: relative;
-        top: 0.25em;
-        margin-right: 0.6em;
-      }
+        i {
+            font-size: 1.8em;
+            position: relative;
+            top: 0.25em;
+            margin-right: 0.6em;
+        }
     }
-
-    .login {
+    #login-button {
         position: absolute;
         top: 0;
         left: 32.9em;
+        min-width: 14em;
         background-color: $red;
         height: 2.8em;
         padding: 0 2em;
@@ -40,6 +37,16 @@
             transition: background 0.15s ease-in;
         }
     }
+  #login-names {
+    display: none;
+    position: absolute;
+    top: 1.925em;
+    left: 0;
+    width: 14em;
+    font-size: 1.454545em;
+    color: $black;
+    background-color: $blackTint7;
+  }
 }
 #nav {
     position: relative;
@@ -354,7 +361,7 @@ thead {
         }
     }
     .content {
-      text-align: left;
+        text-align: left;
         max-width: 15em;
         overflow: hidden;
         white-space: nowrap;
@@ -395,38 +402,40 @@ thead {
         }
     }
     #commentary-header {
-      margin: 0 1em;
-      padding: 2em 0 1em 0;
-      border-bottom: 1px solid $blackTint3;
-      font-weight: 700;
+        margin: 0 1em;
+        padding: 2em 0 1em 0;
+        border-bottom: 1px solid $blackTint3;
+        font-weight: 700;
         .title {
             font-size: 1.125em;
         }
     }
-  ul {
-    padding: 0 1em 1em 1em;
-    overflow-y: auto;
-    height: 25.875em;
-span  {
-  display: inline-block;
-}
-  }
-  .date, .colon, .name  {
-    font-size: 0.8em;
-    line-height: 1;
-  }
-  .name {
-    font-weight: 700;
-  }
+    ul {
+        padding: 0 1em 1em 1em;
+        overflow-y: auto;
+        height: 25.875em;
+        span {
+            display: inline-block;
+        }
+    }
+    .date,
+    .colon,
+    .name {
+        font-size: 0.8em;
+        line-height: 1;
+    }
+    .name {
+        font-weight: 700;
+    }
 
-  li {
-    margin-top: 1.5em;
-  }
-  .input-wrapper {
-    border-top: 1px solid $blackTint3;
-    position: fixed;
-    right: 0;
-    bottom: 0;
-    left: 0;
-  }
+    li {
+        margin-top: 1.5em;
+    }
+    .input-wrapper {
+        border-top: 1px solid $blackTint3;
+        position: fixed;
+        right: 0;
+        bottom: 0;
+        left: 0;
+    }
 }

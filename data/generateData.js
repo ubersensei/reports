@@ -88,7 +88,6 @@ const createReportItemsByReportId = (n_items, reportId) => {
             "0";
         itemsTaskStatus[uniqueId] = {};
         itemsComments[uniqueId] = [];
-
         if (uniqueIds.indexOf(uniqueId) === -1) {
             item["Primary Code"] = uniqueId;
             item["Unique ID"] = uniqueId;
