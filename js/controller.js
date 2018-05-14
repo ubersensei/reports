@@ -1,4 +1,5 @@
 const state = {
+    loggedInUser: null,
     searchStringDashboard: "",
     searchStringIndividualReport: "",
     relevantDatesGlobal: [],

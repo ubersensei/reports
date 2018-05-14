@@ -84,7 +84,7 @@ $(document).ready(function() {
                             .remove();
                     } else {
                         $this.parents("th").append(completionStatusFilterHBS(contextFilter));
-                        $(".close-filter-options").click(function() {
+                        $(".close").click(function() {
                             $(this)
                                 .parents("th")
                                 .find(".filter-options-wrapper")
@@ -123,6 +123,17 @@ $(document).ready(function() {
                         }
                     });
                 });
+
+                if (state.reportTaskFilterPreferences["1"].Maker !== 'both') {
+                    $(".task-header i").eq(0).css('color', '#a8251b');
+                } else {
+                    $(".task-header i").eq(0).css('color', '#757575');
+                }
+                if (state.reportTaskFilterPreferences["1"].Checker !== 'both') {
+                    $(".task-header i").eq(1).css('color', '#a8251b');
+                } else {
+                    $(".task-header i").eq(1).css('color', '#757575');
+                }
             };
             function cbIndividualReport(start, end) {
                 displayReportRange(start, end, renderIndividualReportTable);
@@ -143,7 +154,6 @@ $(document).ready(function() {
         $body.find(".cell").css("background", "none");
         $body.find("#modal-background").remove();
     });
-
     /**
      * Render the pages
      */

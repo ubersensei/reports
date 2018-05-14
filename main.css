@@ -196,9 +196,15 @@ textarea {
   background-color: #272d34;
   color: white; }
   #header-band .header-text {
+    position: relative;
     font-size: 0.6875em;
     line-height: 2.545454;
     letter-spacing: 0.02em; }
+    #header-band .header-text i {
+      font-size: 1.8em;
+      position: relative;
+      top: 0.25em;
+      margin-right: 0.6em; }
   #header-band .login {
     position: absolute;
     top: 0;
