@@ -319,10 +319,9 @@ const getIndividualReportContextTable = ({ reportId }) => {
                         const content = `#${itemComments.length}. ${itemComments[itemComments.length - 1].content}`;
                         return { value: commentaryWithinTableHBS({ reportId, itemId, content }) };
                     case indexOfMaker:
-                        return { value: completionStatusHBS({ completed: value }) };
+                        return { value: completionStatusHBS({ completed: state.reportsItemsTasksStatus[reportId][itemId]["Maker"], reportId, itemId, task: "Maker" }) };
                     case indexOfChecker:
-                        return { value: completionStatusHBS({ completed: value }) };
-                        break;
+                        return { value: completionStatusHBS({ completed: state.reportsItemsTasksStatus[reportId][itemId]["Checker"], reportId, itemId, task: "Checker" }) };
                     default:
                         return { value };
                 }

@@ -1,6 +1,12 @@
 $(document).ready(function() {
     const $content = $("#content");
     const $body = $("body");
+    const userFromStorage = localStorage.getItem('loggedInUser');
+    if (userFromStorage) {
+        state.loggedInUser = userFromStorage;
+        $("#loggedin-user").html(userFromStorage);
+        $("#logout").toggleClass("hide");
+    }
 
     const registerDateRangePickerFunctions = cb => {
         const $reportrange = $("#reportrange");
@@ -68,7 +74,9 @@ $(document).ready(function() {
                 $("#individual-report-table").html(individualReportTableHBS(getIndividualReportContextTable({ reportId })));
                 $(".task-header i").click(function() {
                     const $this = $(this);
-                    const task = $(this).attr("data-task").split(" ")[0];
+                    const task = $(this)
+                        .attr("data-task")
+                        .split(" ")[0];
                     const reportId = $(this).attr("data-reportid");
                     const contextFilter = {
                         reportId,
@@ -101,29 +109,73 @@ $(document).ready(function() {
                     }
                 });
                 $(".commentary-wrapper").click(function() {
-                    const reportId = $(this).attr("data-reportid");
-                    const itemId = $(this).attr("data-itemid");
-                    const comments = state.reportsItemsComments[reportId][itemId];
-                    $(this)
-                        .parents(".cell")
-                        .css("background", "#ccc");
-                    $body.append(commentaryDialogHBS({ comments, reportId, itemId }));
-                    $('#commentary-textarea').focus();
-                    $("#commentary-textarea").keypress(function(e) {
-                        if (e.which === 13) {
-                            const reportId = $(this).attr("data-reportid");
-                            const itemId = $(this).attr("data-itemid");
-                            state.reportsItemsComments[reportId][itemId].push({
-                                name: "Guest",
-                                date: moment().format("MMM D, YYYY"),
-                                content: $(this).val()
-                            });
+                    if (state.loggedInUser === "USER LOGIN") {
+                        toastr.error('Only logged in users are entitled to that operation.', 'Restricted action!');
+                        $("#login-area").slideToggle(500);
+                    } else {
+                        const name = state.loggedInUser;
+                        const reportId = $(this).attr("data-reportid");
+                        const itemId = $(this).attr("data-itemid");
+                        const comments = state.reportsItemsComments[reportId][itemId];
+                        $(this)
+                            .parents(".cell")
+                            .css("background", "#ccc");
+                        $body.append(commentaryDialogHBS({ comments, reportId, itemId }));
+                        $("#commentary-textarea").focus();
+                        $("#commentary-textarea").keypress(function(e) {
+                            if (e.which === 13) {
+                                const reportId = $(this).attr("data-reportid");
+                                const itemId = $(this).attr("data-itemid");
+                                state.reportsItemsComments[reportId][itemId].push({
+                                    name,
+                                    date: moment().format("MMM D, YYYY"),
+                                    content: $(this).val()
+                                });
+                                renderIndividualReportTable({ reportId });
+                                $body.find("#modal-background").remove();
+                                $body.find(".cell").css("background", "none");
+                                return false;
+                            }
+                        });
+                    }
+                });
+                $(".inactive").click(function() {
+                    if (state.loggedInUser === "USER LOGIN") {
+                        toastr.error('Only logged in users are entitled to that operation.', 'Restricted action!');
+                        $("#login-area").slideToggle(500);
+                    } else {
+                        const reportId = $(this).attr("data-reportid");
+                        const itemId = $(this).attr("data-itemid");
+                        const task = $(this).attr("data-task");
+                        if (
+                            $(this)
+                                .find(".material-icons")
+                                .html() === "radio_button_unchecked"
+                        ) {
+                            const name = state.loggedInUser;
+                            if (
+                                $(this)
+                                    .find("span")
+                                    .html() === "WIP"
+                            ) {
+                                state.reportsItemsTasksStatus[reportId][itemId][task] = 0;
+                                state.reportsItemsComments[reportId][itemId].push({
+                                    name,
+                                    date: moment().format("MMM D, YYYY"),
+                                    content: `${name} changed '${task} Status' to 'WIP'`
+                                });
+                            } else {
+                                state.reportsItemsTasksStatus[reportId][itemId][task] = 1;
+                                state.reportsItemsComments[reportId][itemId].push({
+                                    name,
+                                    date: moment().format("MMM D, YYYY"),
+                                    content: `${name} changed '${task} Status' to 'Complete'`
+                                });
+                            }
                             renderIndividualReportTable({ reportId });
-                            $body.find("#modal-background").remove();
-                            $body.find(".cell").css("background", "none");
-                            return false;
                         }
-                    });
+                    }
+
                 });
 
                 if (state.reportTaskFilterPreferences["1"].Maker !== "both") {
@@ -160,15 +212,30 @@ $(document).ready(function() {
         }
     };
 
-    $body.on("click", "#commentary-dialog .close", function() {
-        $body.find(".cell").css("background", "none");
-        $body.find("#modal-background").remove();
-    }).on("click", "#login-names li", function() {
-        const user = $(this).attr("data-user");
-        state.loggedInUser = user;
-        $('#loggedin-user').html(user);
-        $("#login-area").slideUp(500);
-    });
+    $body
+        .on("click", "#commentary-dialog .close", function() {
+            $body.find(".cell").css("background", "none");
+            $body.find("#modal-background").remove();
+        })
+        .on("click", "#login-names li", function() {
+            const user = $(this).attr("data-user");
+            state.loggedInUser = user;
+            localStorage.setItem('loggedInUser', user);
+            $("#loggedin-user").html(user);
+            $("#login-area").slideUp(500);
+            setTimeout(function () {
+                $("#logout").toggleClass("hide");
+            }, 500)
+        })
+        .on("click", "#logout", function() {
+            state.loggedInUser = "USER LOGIN";
+            $("#loggedin-user").html("USER LOGIN");
+            localStorage.removeItem('loggedInUser');
+            $("#login-area").slideDown(500);
+            setTimeout(function () {
+                $("#logout").toggleClass("hide");
+            }, 500)
+        });
 
     /**
      * Render the pages

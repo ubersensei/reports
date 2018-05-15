@@ -34,6 +34,19 @@
             transition: background 0.15s ease-in;
         }
     }
+  #logout {
+    position: absolute;
+    top: 0;
+    left: 32.6em;
+    color: $red;
+    height: 1.94545em;
+    padding: 0 2em;
+    &:hover {
+      cursor: pointer;
+      color: $darkRed;
+      transition: color 0.15s ease-in;
+    }
+  }
 }
 #login-area {
     display: none;
@@ -465,4 +478,11 @@ thead {
         bottom: 0;
         left: 0;
     }
+}
+
+.show {
+  display: block;
+}
+.hide {
+  display: none;
 }

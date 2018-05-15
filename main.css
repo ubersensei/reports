@@ -213,6 +213,17 @@ textarea {
       cursor: pointer;
       background-color: #a8251b;
       transition: background 0.15s ease-in; }
+  #header-band #logout {
+    position: absolute;
+    top: 0;
+    left: 32.6em;
+    color: #da291c;
+    height: 1.94545em;
+    padding: 0 2em; }
+    #header-band #logout:hover {
+      cursor: pointer;
+      color: #a8251b;
+      transition: color 0.15s ease-in; }
 
 #login-area {
   display: none;
@@ -576,5 +587,11 @@ thead {
     right: 0;
     bottom: 0;
     left: 0; }
+
+.show {
+  display: block; }
+
+.hide {
+  display: none; }
 
 /*# sourceMappingURL=main.css.map */

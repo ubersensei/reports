@@ -15,6 +15,7 @@
         <div id="login-button">
             <div class="header-text"><i class="material-icons">person</i><span id="loggedin-user">USER LOGIN</span></div>
         </div>
+        <div id="logout" class="hide"><i class="material-icons">close</i></div>
     </div>
     <div id="login-area">
         <div id="login-names">
@@ -182,10 +183,10 @@
 </script>
 <script id="completion-status-hbs" type="text/x-handlebars-template">
     <div class="status">
-        <div class="{{#if completed}}inactive{{else}}active{{/if}}">
+        <div class="{{#if completed}}inactive{{else}}active{{/if}}" data-reportid="{{reportId}}" data-task="{{task}}" data-itemid="{{itemId}}">
             <i class="{{#if completed}}material-icons{{else}}material-icons wip{{/if}}">{{#if completed}}radio_button_unchecked{{else}}radio_button_checked{{/if}}</i><span>WIP</span>
         </div>
-        <div class="{{#if completed}}active{{else}}inactive{{/if}}">
+        <div class="{{#if completed}}active{{else}}inactive{{/if}}" data-reportid="{{reportId}}" data-task="{{task}}" data-itemid="{{itemId}}">
             <i class="material-icons">{{#if completed}}radio_button_checked{{else}}radio_button_unchecked{{/if}}</i><span>Complete</span>
         </div>
     </div>
@@ -232,5 +233,7 @@
 <script type="text/javascript" src="js/controller.js"></script>
 <script type="text/javascript" src="js/view.js"></script>
 <script type="text/javascript" src="js/ui.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" />
 </body>
 </html>
