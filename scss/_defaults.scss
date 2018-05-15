@@ -53,6 +53,7 @@ p {
 
 input,
 textarea {
+    @extend %font_pre;
     display: block;
     line-height: 100%;
     width: 100%;
@@ -76,12 +77,12 @@ input {
     }
 }
 textarea {
-  -webkit-appearance: none;
-  border-radius: 0;
-  font-size: 1em;
-  line-height: 1;
-  padding: 0.5em 1em;
-  border: none;
-  height: 4em;
-  resize: none;
+    -webkit-appearance: none;
+    border-radius: 0;
+    font-size: 1em;
+    line-height: 1;
+    padding: 0.5em 1em;
+    border: none;
+    height: 4em;
+    resize: none;
 }

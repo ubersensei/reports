@@ -1,12 +1,6 @@
 $(document).ready(function() {
     const $content = $("#content");
     const $body = $("body");
-    const userFromStorage = localStorage.getItem('loggedInUser');
-    if (userFromStorage) {
-        state.loggedInUser = userFromStorage;
-        $("#loggedin-user").html(userFromStorage);
-        $("#logout").toggleClass("hide");
-    }
 
     const registerDateRangePickerFunctions = cb => {
         const $reportrange = $("#reportrange");
@@ -227,7 +221,6 @@ $(document).ready(function() {
         .on("click", "#login-names li", function() {
             const user = $(this).attr("data-user");
             state.loggedInUser = user;
-            localStorage.setItem('loggedInUser', user);
             $("#loggedin-user").html(user);
             $("#login-area").slideUp(500);
             setTimeout(function () {
@@ -237,8 +230,6 @@ $(document).ready(function() {
         .on("click", "#logout", function() {
             state.loggedInUser = "USER LOGIN";
             $("#loggedin-user").html("USER LOGIN");
-            localStorage.removeItem('loggedInUser');
-
             if ($("#login-area").is(":visible")) {
                 $("#login-area").slideUp(500);
             } else {
