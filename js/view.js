@@ -152,13 +152,24 @@ $(document).ready(function() {
                                     .find("span")
                                     .html() === "WIP"
                             ) {
-                                state.reportsItemsTasksStatus[reportId][itemId][task] = 0;
-                                state.reportsItemsComments[reportId][itemId].push({
-                                    name,
-                                    date: moment().format("MMM D, YYYY"),
-                                    content: `${name} changed '${task} Status' to 'WIP'`
-                                });
-                                toastr.success(`'Maker' Status was updated successfully`, 'Success!')
+                                if (task === "Maker" && state.reportsItemsTasksStatus[reportId][itemId]["Checker"] === 1) {
+                                    state.reportsItemsTasksStatus[reportId][itemId][task] = 0;
+                                    state.reportsItemsTasksStatus[reportId][itemId]["Checker"] = 0;
+                                    state.reportsItemsComments[reportId][itemId].push({
+                                        name,
+                                        date: moment().format("MMM D, YYYY"),
+                                        content: `${name} changed 'Maker Status' and 'Checker Status' to 'WIP'`
+                                    });
+                                    toastr.info(`'Checker Status' has also been changed along with 'Maker Status'.`, 'Maker + Checker')
+                                } else {
+                                    state.reportsItemsTasksStatus[reportId][itemId][task] = 0;
+                                    state.reportsItemsComments[reportId][itemId].push({
+                                        name,
+                                        date: moment().format("MMM D, YYYY"),
+                                        content: `${name} changed '${task} Status' to 'WIP'`
+                                    });
+                                    toastr.success(`'${task}' Status was updated successfully`, 'Success!')
+                                }
                             } else {
                                 if (task === "Checker" && state.reportsItemsTasksStatus[reportId][itemId]["Maker"] === 0) {
                                     toastr.warning(`Cannot update 'Checker Status' until 'Maker Status' is complete`, 'Maker first')
@@ -169,7 +180,7 @@ $(document).ready(function() {
                                         date: moment().format("MMM D, YYYY"),
                                         content: `${name} changed '${task} Status' to 'Complete'`
                                     });
-                                    toastr.success(`'Checker' Status was updated successfully`, 'Success!')
+                                    toastr.success(`'${task}' Status was updated successfully`, 'Success!')
 
                                 }
                             }
