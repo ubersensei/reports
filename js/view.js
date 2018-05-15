@@ -27,9 +27,10 @@ $(document).ready(function() {
             cb
         );
         $reportrange.click(function() {
-            $("#report-range-backdrop").slideToggle(100);
+            $("#report-range-backdrop").slideDown(100);
         });
     };
+
     const displayReportRange = (start, end, fn) => {
         $("#reportrange span").html(start.format("MMM D, YYYY") + " - " + end.format("MMM D, YYYY"));
         $("#report-range-backdrop").slideUp(100);
@@ -104,7 +105,7 @@ $(document).ready(function() {
                 });
                 $(".commentary-wrapper").click(function() {
                     if (state.loggedInUser === "USER LOGIN") {
-                        toastr.error('Only logged in users are entitled to that operation.', 'Restricted action!');
+                        toastr.error("Only logged in users are entitled to that operation.", "Restricted action!");
                         $("#login-area").slideToggle(500);
                     } else {
                         const name = state.loggedInUser;
@@ -135,7 +136,7 @@ $(document).ready(function() {
                 });
                 $(".inactive").click(function() {
                     if (state.loggedInUser === "USER LOGIN") {
-                        toastr.error('Only logged in users are entitled to that operation.', 'Restricted action!');
+                        toastr.error("Only logged in users are entitled to that operation.", "Restricted action!");
                         $("#login-area").slideToggle(500);
                     } else {
                         const reportId = $(this).attr("data-reportid");
@@ -160,7 +161,7 @@ $(document).ready(function() {
                                         date: moment().format("MMM D, YYYY"),
                                         content: `${name} changed 'Maker Status' and 'Checker Status' to 'WIP'`
                                     });
-                                    toastr.info(`'Checker Status' has also been changed along with 'Maker Status'.`, 'Maker + Checker')
+                                    toastr.info(`'Checker Status' has also been changed along with 'Maker Status'.`, "Maker + Checker");
                                 } else {
                                     state.reportsItemsTasksStatus[reportId][itemId][task] = 0;
                                     state.reportsItemsComments[reportId][itemId].push({
@@ -168,11 +169,11 @@ $(document).ready(function() {
                                         date: moment().format("MMM D, YYYY"),
                                         content: `${name} changed '${task} Status' to 'WIP'`
                                     });
-                                    toastr.success(`'${task}' Status was updated successfully`, 'Success!')
+                                    toastr.success(`'${task}' Status was updated successfully`, "Success!");
                                 }
                             } else {
                                 if (task === "Checker" && state.reportsItemsTasksStatus[reportId][itemId]["Maker"] === 0) {
-                                    toastr.warning(`Cannot update 'Checker Status' until 'Maker Status' is complete`, 'Maker first')
+                                    toastr.warning(`Cannot update 'Checker Status' until 'Maker Status' is complete`, "Maker first");
                                 } else {
                                     state.reportsItemsTasksStatus[reportId][itemId][task] = 1;
                                     state.reportsItemsComments[reportId][itemId].push({
@@ -180,14 +181,12 @@ $(document).ready(function() {
                                         date: moment().format("MMM D, YYYY"),
                                         content: `${name} changed '${task} Status' to 'Complete'`
                                     });
-                                    toastr.success(`'${task}' Status was updated successfully`, 'Success!')
-
+                                    toastr.success(`'${task}' Status was updated successfully`, "Success!");
                                 }
                             }
                             renderIndividualReportTable({ reportId });
                         }
                     }
-
                 });
 
                 if (state.reportTaskFilterPreferences["1"].Maker !== "both") {
@@ -234,9 +233,9 @@ $(document).ready(function() {
             state.loggedInUser = user;
             $("#loggedin-user").html(user);
             $("#login-area").slideUp(500);
-            setTimeout(function () {
-                $("#logout").toggleClass("hide");
-            }, 500)
+            setTimeout(function() {
+                $("#logout").removeClass("hide");
+            }, 500);
         })
         .on("click", "#logout", function() {
             state.loggedInUser = "USER LOGIN";
@@ -247,9 +246,9 @@ $(document).ready(function() {
                 $("#login-area").slideDown(500);
             }
 
-            setTimeout(function () {
-                $("#logout").toggleClass("hide");
-            }, 500)
+            setTimeout(function() {
+                $("#logout").addClass("hide");
+            }, 500);
         });
 
     /**

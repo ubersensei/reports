@@ -440,13 +440,13 @@ thead {
     margin-top: 0.3em;
     float: right;
     overflow: hidden;
-    margin-left: 0.5em;
     color: #757575; }
     .task-header .filter:hover {
       cursor: pointer;
       color: #000; }
   .task-header p {
-    overflow: hidden; }
+    overflow: hidden;
+    display: block; }
 
 .filter-options-wrapper {
   position: absolute;

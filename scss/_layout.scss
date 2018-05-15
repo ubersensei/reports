@@ -296,7 +296,6 @@ thead {
         margin-top: 0.3em;
         float: right;
         overflow: hidden;
-        margin-left: 0.5em;
         color: $blackTint2;
         &:hover {
             cursor: pointer;
@@ -305,6 +304,7 @@ thead {
     }
     p {
         overflow: hidden;
+      display: block;
     }
 }
 
