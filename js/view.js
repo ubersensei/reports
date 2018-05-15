@@ -164,13 +164,20 @@ $(document).ready(function() {
                                     date: moment().format("MMM D, YYYY"),
                                     content: `${name} changed '${task} Status' to 'WIP'`
                                 });
+                                toastr.success(`'Maker' Status was updated successfully`, 'Success!')
                             } else {
-                                state.reportsItemsTasksStatus[reportId][itemId][task] = 1;
-                                state.reportsItemsComments[reportId][itemId].push({
-                                    name,
-                                    date: moment().format("MMM D, YYYY"),
-                                    content: `${name} changed '${task} Status' to 'Complete'`
-                                });
+                                if (task === "Checker" && state.reportsItemsTasksStatus[reportId][itemId]["Maker"] === 0) {
+                                    toastr.warning(`Cannot update 'Checker Status' until 'Maker Status' is complete`, 'Maker first')
+                                } else {
+                                    state.reportsItemsTasksStatus[reportId][itemId][task] = 1;
+                                    state.reportsItemsComments[reportId][itemId].push({
+                                        name,
+                                        date: moment().format("MMM D, YYYY"),
+                                        content: `${name} changed '${task} Status' to 'Complete'`
+                                    });
+                                    toastr.success(`'Checker' Status was updated successfully`, 'Success!')
+
+                                }
                             }
                             renderIndividualReportTable({ reportId });
                         }
@@ -231,7 +238,13 @@ $(document).ready(function() {
             state.loggedInUser = "USER LOGIN";
             $("#loggedin-user").html("USER LOGIN");
             localStorage.removeItem('loggedInUser');
-            $("#login-area").slideDown(500);
+
+            if ($("#login-area").is(":visible")) {
+                $("#login-area").slideUp(500);
+            } else {
+                $("#login-area").slideDown(500);
+            }
+
             setTimeout(function () {
                 $("#logout").toggleClass("hide");
             }, 500)
@@ -250,8 +263,8 @@ $(document).ready(function() {
         $("#menu").slideUp(500);
     });
 
-    renderReportPage({ reportId: 1 });
+    // renderReportPage({ reportId: 1 });
 
     // the default rendering
-    // renderDashboardPage();
+    renderDashboardPage();
 });
