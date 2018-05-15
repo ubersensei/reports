@@ -264,8 +264,10 @@ table {
     border-collapse: collapse;
 }
 
-tr:nth-child(even) {
+#dashboard-table, #individual-report-table {
+  tr:nth-child(even) {
     background-color: $blackTint7;
+  }
 }
 
 td,
