@@ -1,5 +1,3 @@
-
-
 resetState = () => {
     state.startDate = moment().subtract(6, "days");
     state.endDate = moment();
@@ -122,6 +120,7 @@ const getIndividualReportContextTable = ({ reportId }) => {
                 }
             });
         });
+
     return {
         headerTitles,
         contentRows

@@ -264,10 +264,8 @@ $(document).ready(function() {
         $("#menu").slideUp(500);
     });
 
-
     // the default rendering
     renderDashboardPage();
-
 
     // Other purely UI functions
     $("#account-menu-link").click(function() {
