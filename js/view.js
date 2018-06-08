@@ -264,7 +264,6 @@ $(document).ready(function() {
         $("#menu").slideUp(500);
     });
 
-    // renderReportPage({ reportId: 1 });
 
     // the default rendering
     renderDashboardPage();
